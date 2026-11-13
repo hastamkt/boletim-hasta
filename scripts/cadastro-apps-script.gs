@@ -1,7 +1,7 @@
 /**
  * Boletim Hasta — recebe os cadastros do boletim e grava na planilha
  * "Cadastros – Boletim Hasta" (Google Drive do Túlio).
- * Instalação: planilha → Extensões → Apps Script → cole este código →
+ * Instalação: script.new → cole este código →
  * Implantar → Nova implantação → App da Web → Executar como: Eu → Acesso: Qualquer pessoa.
  */
 function doPost(e) {
@@ -13,7 +13,7 @@ function doPost(e) {
   }
   var lock = LockService.getScriptLock(); lock.waitLock(10000);
   try {
-    var aba = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+    var aba = SpreadsheetApp.openById("1koTX6iR6B6m7seGNlBPS6iYSQa1PzeVSc5Gn1BZg4V0").getSheets()[0];
     aba.appendRow([new Date(), nome, "'" + tel, email, p.aceite === "sim" ? "sim" : "não", limpa(p.origem, 200), limpa(p.ua, 200)]);
   } finally { lock.releaseLock(); }
   return resposta({ ok: true });
