@@ -1,0 +1,83 @@
+name: Atualizar dados do boletim
+
+on:
+  schedule:
+    # horários em UTC (Brasília = UTC-3)
+    - cron: "40 21 * * 1-5"   # 18h40, após o fechamento da B3
+    - cron: "17 11 * * *"     # 08h17, índices, CEAGESP, ANP e ANEEL
+    - cron: "7 15 * * 1-5"    # 12h07, atualização de meio de pregão
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-boletim
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+      SFTP_SERVER: ${{ secrets.SFTP_SERVER }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Coletar dados
+        if: github.event_name != 'push'
+        run: python scripts/atualizar.py
+
+      - name: Salvar dados no repositório
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "boletim-bot"
+          git config user.email "boletim-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "dados: atualização automática $(date -u +'%Y-%m-%d %H:%M') UTC"
+          git push
+
+      # Publica em hastamarketing.com/boletim (hospedagem com FTP: Hostinger, cPanel, Locaweb, HostGator...).
+      # Só roda se os segredos FTP_SERVER, FTP_USERNAME e FTP_PASSWORD estiverem cadastrados.
+      - name: Enviar para hastamarketing.com via FTP
+        if: env.FTP_SERVER != ''
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ secrets.FTP_PROTOCOL || 'ftps' }}
+          server-dir: ${{ secrets.FTP_DIR || 'public_html/boletim/' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            scripts/**
+            requirements.txt
+            README.md
+            CNAME
+            incorporar.html
+
+      # GoDaddy WordPress Gerenciado (só aceita SFTP). Roda se SFTP_SERVER estiver cadastrado.
+      - name: Montar pasta do site
+        if: env.SFTP_SERVER != ''
+        run: mkdir -p _site && cp -r index.html assets data _site/
+      - name: Enviar para hastamarketing.com via SFTP
+        if: env.SFTP_SERVER != ''
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT || '22' }}
+          local_path: ./_site/*
+          remote_path: ${{ secrets.SFTP_DIR || 'html/boletim' }}
+          sftp_only: true

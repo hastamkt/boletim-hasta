@@ -1,0 +1,20 @@
+<!--
+  BOLETIM HASTA — código para colar numa página do hastamarketing.com
+  (WordPress: bloco "HTML personalizado" · Wix: "Incorporar código > HTML" ·
+   Elementor: widget "HTML" · Hostinger Website Builder: "Incorporar código").
+  Troque o endereço do src se publicar o boletim em outro lugar.
+-->
+<div id="boletim-hasta-wrap" style="width:100%;max-width:100%;">
+  <iframe id="boletim-hasta" src="https://boletim.hastamarketing.com/?embed=1"
+          title="Boletim Econômico Hasta" loading="lazy"
+          style="width:100%;height:2400px;border:0;display:block;overflow:hidden;"
+          scrolling="no"></iframe>
+</div>
+<script>
+  // Ajusta a altura do iframe ao conteúdo do boletim, sem barra de rolagem dupla.
+  window.addEventListener("message", function (e) {
+    if (e.data && e.data.boletimHasta && e.data.altura) {
+      document.getElementById("boletim-hasta").style.height = e.data.altura + "px";
+    }
+  });
+</script>

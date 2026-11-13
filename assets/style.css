@@ -1,0 +1,140 @@
+/* Boletim Hasta — identidade: fundo branco, texto preto, títulos roxo #4f1964,
+   caixas amarelo #fedb00, detalhes #ffb600. Intro Rust é fonte comercial:
+   coloque o arquivo em assets/fonts/IntroRust.woff2 para ativá-la. */
+@font-face { font-family: "Intro Rust"; src: url("fonts/IntroRust.woff2") format("woff2"); font-display: swap; }
+
+:root {
+  --roxo: #4f1964;
+  --amarelo: #fedb00;
+  --ouro: #ffb600;
+  --texto: #111111;
+  --texto-2: #4a4a4a;
+  --texto-3: #767676;
+  --linha: #ececec;
+  --fundo: #ffffff;
+  --fundo-2: #faf8fc;
+  /* séries validadas (contraste ≥3:1 e separação para daltonismo) */
+  --serie-1: #7a3a96;
+  --serie-2: #b07a00;
+  --f-titulo: "Intro Rust", "League Spartan", system-ui, sans-serif;
+  --f-sub: "League Spartan", system-ui, sans-serif;
+  --f-cab: "Inter", system-ui, sans-serif;
+  --f-corpo: "Montserrat", system-ui, sans-serif;
+  --raio: 14px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+body { margin: 0; background: var(--fundo); color: var(--texto); font-family: var(--f-corpo); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { color: var(--roxo); }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+/* topo */
+.topo { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--linha); }
+.topo-in { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px; padding-bottom: 8px; }
+.marca { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo { height: 37px; width: auto; display: block; }
+.marca-nome { font-family: var(--f-titulo); font-weight: 800; font-size: 28px; color: var(--roxo); letter-spacing: -.5px; }
+.marca-nome .ponto { color: var(--ouro); }
+.marca-tag { font-family: var(--f-cab); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; background: var(--amarelo); color: var(--texto); padding: 3px 8px; border-radius: 4px; }
+.atualizado { font-family: var(--f-cab); font-size: 12px; color: var(--texto-2); text-align: right; }
+.abas { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+.abas::-webkit-scrollbar { display: none; }
+.abas a { flex: none; font-family: var(--f-cab); font-size: 13px; font-weight: 600; text-decoration: none; color: var(--texto); padding: 6px 12px; border: 1px solid var(--linha); border-radius: 999px; }
+.abas a:hover, .abas a:focus-visible { border-color: var(--roxo); color: var(--roxo); }
+
+.hero { padding: 36px 0 8px; }
+.hero h1 { font-family: var(--f-titulo); color: var(--roxo); font-size: clamp(32px, 6vw, 52px); line-height: 1; margin: 0 0 10px; font-weight: 800; }
+.hero p { max-width: 620px; color: var(--texto-2); margin: 0; }
+
+/* seções */
+.secao { padding: 34px 0 10px; }
+.sec-cab { margin-bottom: 16px; }
+.sec-cab.menor { margin-top: 28px; }
+.sec-etq { display: inline-block; font-family: var(--f-cab); font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--roxo); border-bottom: 3px solid var(--ouro); padding-bottom: 2px; margin-bottom: 8px; }
+.sec-cab h2 { font-family: var(--f-sub); font-weight: 700; color: var(--roxo); font-size: clamp(22px, 3.4vw, 30px); margin: 0; line-height: 1.15; }
+.sec-ref { margin: 4px 0 0; color: var(--texto-3); font-size: 13px; }
+
+/* KPIs */
+.grade-kpi { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 12px; margin-bottom: 14px; }
+.kpi { background: var(--amarelo); border-radius: var(--raio); padding: 14px 14px 10px; display: flex; flex-direction: column; min-height: 132px; }
+.kpi.neutro { background: var(--fundo-2); border: 1px solid var(--linha); }
+.kpi-nome { font-family: var(--f-cab); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--texto); }
+.kpi-valor { font-family: var(--f-sub); font-weight: 800; font-size: 28px; line-height: 1.05; margin: 6px 0 2px; color: var(--texto); font-variant-numeric: tabular-nums; }
+.kpi-valor small { font-size: 14px; font-weight: 600; margin-left: 2px; }
+.kpi-var { font-family: var(--f-cab); font-size: 12.5px; font-weight: 600; color: var(--texto); }
+.kpi-sub { font-size: 11.5px; color: var(--texto-2); margin-top: 2px; }
+.kpi canvas { margin-top: auto; width: 100% !important; height: 30px !important; }
+.seta { display: inline-block; width: 1.1em; }
+
+/* cartões */
+.cartao { border: 1px solid var(--linha); border-radius: var(--raio); padding: 18px; margin-bottom: 14px; background: #fff; }
+.cartao h3 { font-family: var(--f-sub); font-weight: 700; font-size: 18px; margin: 0; color: var(--roxo); }
+.cartao h4 { font-family: var(--f-cab); font-size: 13px; margin: 8px 0; color: var(--texto); }
+.cartao-cab { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.sub { margin: 2px 0 10px; font-size: 12.5px; color: var(--texto-3); }
+.grade-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grade-2 > .cartao { margin-bottom: 0; }
+.grade-2.interna { gap: 24px; }
+.controles { display: flex; flex-wrap: wrap; gap: 8px; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; background: var(--fundo-2); border: 1px solid var(--linha); border-radius: 999px; padding: 3px; }
+.seg button { font-family: var(--f-cab); font-size: 12.5px; font-weight: 600; border: 0; background: transparent; color: var(--texto-2); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+.seg button.on { background: var(--roxo); color: #fff; }
+.seg button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 1px; }
+.graf { position: relative; height: 280px; }
+.legenda { display: flex; gap: 16px; font-size: 12.5px; color: var(--texto-2); margin-top: 8px; }
+.legenda i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.nota { font-size: 12px; color: var(--texto-3); margin: 10px 0 0; }
+
+/* listas com barras divergentes */
+.lista-var .linha { display: grid; grid-template-columns: minmax(92px, 34%) 1fr 92px; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--linha); font-size: 13.5px; }
+.lista-var .linha:last-child { border-bottom: 0; }
+.lista-var .nome { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lista-var .val { white-space: nowrap; text-align: right; font-family: var(--f-cab); font-weight: 700; font-variant-numeric: tabular-nums; }
+.barra { height: 10px; background: var(--fundo-2); border-radius: 4px; position: relative; overflow: hidden; }
+.barra span { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 0 4px 4px 0; background: var(--serie-1); }
+.barra.neg span { background: var(--serie-2); }
+
+/* ranking por estado */
+.ranking { columns: 320px 3; column-gap: 28px; }
+.ranking .linha { break-inside: avoid; }
+.ranking .linha { display: grid; grid-template-columns: 26px minmax(110px, 40%) 1fr 78px; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--linha); font-size: 13px; cursor: default; }
+.ranking .pos { color: var(--texto-3); font-family: var(--f-cab); font-size: 11.5px; font-weight: 600; }
+.ranking .nome { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ranking .nome b { font-family: var(--f-cab); font-size: 11px; color: var(--texto-3); margin-right: 4px; }
+.ranking .val { text-align: right; font-family: var(--f-cab); font-weight: 700; font-variant-numeric: tabular-nums; }
+.ranking .linha:hover { background: var(--fundo-2); }
+.ranking .barra span { border-radius: 0 4px 4px 0; }
+
+/* tabela */
+.tabela-wrap { overflow-x: auto; padding: 6px 12px; }
+.tabela { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 620px; }
+.tabela th { font-family: var(--f-cab); font-size: 11.5px; text-transform: uppercase; letter-spacing: .5px; color: var(--texto-2); text-align: left; padding: 10px 8px; border-bottom: 2px solid var(--ouro); }
+.tabela td { padding: 9px 8px; border-bottom: 1px solid var(--linha); }
+.tabela td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--f-cab); font-weight: 600; }
+.tabela tr:hover td { background: var(--fundo-2); }
+
+.fontes ul { padding-left: 18px; font-size: 13px; color: var(--texto-2); }
+.fontes h2 { font-family: var(--f-sub); color: var(--roxo); }
+.rodape { margin-top: 30px; padding: 26px 0; background: #fff; border-top: 4px solid var(--amarelo); font-size: 13px; color: var(--texto-2); }
+.rodape-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+.logo-rodape { height: 60px; width: auto; }
+.rodape-links { display: flex; flex-wrap: wrap; gap: 16px; font-family: var(--f-cab); font-weight: 600; }
+.rodape a { color: var(--roxo); text-decoration: none; }
+.rodape a:hover { text-decoration: underline; }
+/* modo incorporado (iframe dentro do hastamarketing.com) */
+.embed .topo { position: static; }
+.embed .hero { padding-top: 18px; }
+
+.tip { position: fixed; z-index: 50; pointer-events: none; background: #fff; color: var(--texto); border: 1px solid var(--linha); border-left: 3px solid var(--ouro); box-shadow: 0 4px 14px rgba(0,0,0,.08); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; max-width: 240px; }
+.tip b { font-family: var(--f-cab); }
+
+@media (max-width: 760px) {
+  .grade-2 { grid-template-columns: 1fr; }
+  .grade-kpi { grid-template-columns: repeat(2, 1fr); }
+  .kpi-valor { font-size: 23px; }
+  .ranking { columns: 1; }
+  .graf { height: 240px; }
+  .atualizado { font-size: 11px; max-width: 48%; }
+  .logo { height: 30px; }
+}
+@media print { .topo { position: static; } .abas, .controles, .seg { display: none; } }

@@ -1,0 +1,1775 @@
+{
+ "atualizado_em": "2026-11-13T00:30:00-03:00",
+ "modo": "semente",
+ "mercado": {
+  "data": "2026-11-12",
+  "ativos": [
+   {
+    "id": "ibovespa",
+    "nome": "Ibovespa",
+    "unidade": "pts",
+    "valor": 171324.31,
+    "var_dia": -0.43,
+    "var_mes": 2.03,
+    "var_ano": 6.33,
+    "hist": [
+     [
+      "2026-11-04",
+      167563.47
+     ],
+     [
+      "2026-11-06",
+      168498.45
+     ],
+     [
+      "2026-11-09",
+      172236.05
+     ],
+     [
+      "2026-11-10",
+      171337.0
+     ],
+     [
+      "2026-11-11",
+      172060.0
+     ],
+     [
+      "2026-11-12",
+      171324.31
+     ]
+    ],
+    "data": "2026-11-12"
+   },
+   {
+    "id": "dolar",
+    "nome": "Dólar comercial",
+    "unidade": "R$",
+    "valor": 5.65,
+    "var_dia": 1.62,
+    "hist": [
+     [
+      "2026-11-03",
+      5.5
+     ],
+     [
+      "2026-11-04",
+      5.45
+     ],
+     [
+      "2026-11-05",
+      5.49
+     ],
+     [
+      "2026-11-06",
+      5.5087
+     ],
+     [
+      "2026-11-09",
+      5.513
+     ],
+     [
+      "2026-11-11",
+      5.56
+     ],
+     [
+      "2026-11-12",
+      5.65
+     ]
+    ],
+    "data": "2026-11-12"
+   },
+   {
+    "id": "euro",
+    "nome": "Euro comercial",
+    "unidade": "R$",
+    "valor": 6.18,
+    "var_dia": null,
+    "hist": [
+     [
+      "2026-11-03",
+      6.15
+     ],
+     [
+      "2026-11-04",
+      6.12
+     ],
+     [
+      "2026-11-06",
+      6.13
+     ],
+     [
+      "2026-11-09",
+      6.18
+     ]
+    ],
+    "data": "2026-11-09"
+   },
+   {
+    "id": "bitcoin",
+    "nome": "Bitcoin",
+    "unidade": "R$",
+    "valor": 435976,
+    "var_dia": -0.13,
+    "extra": "≈ US$ 76 mil",
+    "hist": [],
+    "data": "2026-11-10"
+   },
+   {
+    "id": "brent",
+    "nome": "Petróleo Brent",
+    "unidade": "US$",
+    "valor": 95.79,
+    "var_dia": 3.27,
+    "hist": [
+     [
+      "2026-10-28",
+      115.32
+     ],
+     [
+      "2026-10-29",
+      114.88
+     ],
+     [
+      "2026-10-30",
+      117.64
+     ],
+     [
+      "2026-11-02",
+      104.77
+     ],
+     [
+      "2026-11-03",
+      103.6
+     ],
+     [
+      "2026-11-04",
+      94.62
+     ],
+     [
+      "2026-11-05",
+      98.29
+     ],
+     [
+      "2026-11-06",
+      98.32
+     ],
+     [
+      "2026-11-09",
+      92.57
+     ],
+     [
+      "2026-11-10",
+      91.49
+     ],
+     [
+      "2026-11-11",
+      92.76
+     ],
+     [
+      "2026-11-12",
+      95.79
+     ]
+    ],
+    "data": "2026-11-12"
+   },
+   {
+    "id": "wti",
+    "nome": "Petróleo WTI",
+    "unidade": "US$",
+    "valor": 88.95,
+    "var_dia": 2.8,
+    "hist": [
+     [
+      "2026-10-30",
+      104.12
+     ],
+     [
+      "2026-11-09",
+      86.38
+     ],
+     [
+      "2026-11-10",
+      85.76
+     ],
+     [
+      "2026-11-11",
+      86.78
+     ],
+     [
+      "2026-11-12",
+      88.95
+     ]
+    ],
+    "data": "2026-11-12"
+   }
+  ],
+  "maiores_altas": [
+   {
+    "ticker": "HAPV3",
+    "var": 14.9
+   },
+   {
+    "ticker": "AZZA3",
+    "var": 9.95
+   },
+   {
+    "ticker": "BEEF3",
+    "var": 5.65
+   },
+   {
+    "ticker": "UGPA3",
+    "var": 4.55
+   }
+  ],
+  "maiores_baixas": [
+   {
+    "ticker": "BBAS3",
+    "var": -8.35
+   },
+   {
+    "ticker": "MGLU3",
+    "var": -7.7
+   },
+   {
+    "ticker": "TEND3",
+    "var": -6.95
+   }
+  ]
+ },
+ "juros": {
+  "selic": {
+   "atual": 13.75,
+   "decisao": "2026-11-04",
+   "resultado": "Manutenção (unânime)",
+   "anterior": 14.0,
+   "proxima_reuniao": "8 e 9 de dezembro de 2026",
+   "hist": [
+    [
+     "2025-06-18",
+     15.0
+    ],
+    [
+     "2026-09-16",
+     13.75
+    ],
+    [
+     "2026-11-04",
+     13.75
+    ]
+   ]
+  }
+ },
+ "inflacao": [
+  {
+   "id": "ipca",
+   "nome": "IPCA",
+   "fonte": "IBGE",
+   "ref": "2026-10",
+   "mes": 0.14,
+   "acum_ano": 4.1,
+   "acum12": 4.63,
+   "prox": "11/12 (novembro)",
+   "hist": [
+    {
+     "ref": "2025-01",
+     "mes": 0.16
+    },
+    {
+     "ref": "2025-02",
+     "mes": 1.31
+    },
+    {
+     "ref": "2025-03",
+     "mes": 0.56
+    },
+    {
+     "ref": "2025-04",
+     "mes": 0.43
+    },
+    {
+     "ref": "2025-05",
+     "mes": 0.26
+    },
+    {
+     "ref": "2025-06",
+     "mes": 0.24
+    },
+    {
+     "ref": "2025-07",
+     "mes": 0.26
+    },
+    {
+     "ref": "2025-08",
+     "mes": -0.11
+    },
+    {
+     "ref": "2025-09",
+     "mes": 0.48
+    },
+    {
+     "ref": "2025-10",
+     "mes": 0.09
+    },
+    {
+     "ref": "2025-11",
+     "mes": 0.18
+    },
+    {
+     "ref": "2025-12",
+     "mes": 0.33,
+     "acum12": 4.26
+    },
+    {
+     "ref": "2026-01",
+     "mes": 0.33,
+     "acum12": 4.44
+    },
+    {
+     "ref": "2026-02",
+     "mes": 0.7,
+     "acum12": 3.81
+    },
+    {
+     "ref": "2026-03",
+     "mes": 0.88,
+     "acum12": 4.14
+    },
+    {
+     "ref": "2026-04",
+     "mes": 0.67,
+     "acum12": 4.39
+    },
+    {
+     "ref": "2026-05",
+     "mes": 0.58,
+     "acum12": 4.72
+    },
+    {
+     "ref": "2026-06",
+     "mes": 0.16,
+     "acum12": 4.64
+    },
+    {
+     "ref": "2026-07",
+     "mes": 0.07,
+     "acum12": 4.44
+    },
+    {
+     "ref": "2026-08",
+     "mes": -0.32,
+     "acum12": 4.22
+    },
+    {
+     "ref": "2026-09",
+     "mes": 0.82,
+     "acum12": 4.58
+    },
+    {
+     "ref": "2026-10",
+     "mes": 0.14,
+     "acum12": 4.63
+    }
+   ]
+  },
+  {
+   "id": "ipca15",
+   "nome": "IPCA-15",
+   "fonte": "IBGE",
+   "ref": "2026-10",
+   "mes": 0.32,
+   "acum_ano": 4.15,
+   "acum12": 4.62,
+   "hist": [
+    {
+     "ref": "2026-08",
+     "mes": -0.4
+    },
+    {
+     "ref": "2026-09",
+     "mes": 0.7,
+     "acum12": 4.47
+    },
+    {
+     "ref": "2026-10",
+     "mes": 0.32,
+     "acum12": 4.62
+    }
+   ]
+  },
+  {
+   "id": "inpc",
+   "nome": "INPC",
+   "fonte": "IBGE",
+   "ref": "2026-10",
+   "mes": 0.22,
+   "acum_ano": 4.24,
+   "acum12": 4.49,
+   "hist": [
+    {
+     "ref": "2025-10",
+     "mes": 0.03,
+     "acum12": 4.49
+    },
+    {
+     "ref": "2025-11",
+     "mes": 0.03,
+     "acum12": 4.18
+    },
+    {
+     "ref": "2025-12",
+     "mes": 0.21,
+     "acum12": 3.9
+    },
+    {
+     "ref": "2026-01",
+     "mes": 0.39,
+     "acum12": 4.3
+    },
+    {
+     "ref": "2026-02",
+     "mes": 0.56,
+     "acum12": 3.36
+    },
+    {
+     "ref": "2026-03",
+     "mes": 0.91,
+     "acum12": 3.77
+    },
+    {
+     "ref": "2026-04",
+     "mes": 0.81,
+     "acum12": 4.11
+    },
+    {
+     "ref": "2026-05",
+     "mes": 0.65,
+     "acum12": 4.42
+    },
+    {
+     "ref": "2026-06",
+     "mes": 0.14,
+     "acum12": 4.33
+    },
+    {
+     "ref": "2026-07",
+     "mes": -0.01,
+     "acum12": 4.1
+    },
+    {
+     "ref": "2026-08",
+     "mes": -0.32,
+     "acum12": 3.98
+    },
+    {
+     "ref": "2026-09",
+     "mes": 0.82,
+     "acum12": 4.29
+    },
+    {
+     "ref": "2026-10",
+     "mes": 0.22,
+     "acum12": 4.49
+    }
+   ],
+   "prox": "11/12 (novembro)"
+  },
+  {
+   "id": "igpm",
+   "nome": "IGP-M",
+   "fonte": "FGV",
+   "ref": "2026-10",
+   "mes": 1.47,
+   "acum_ano": 4.97,
+   "acum12": 5.24,
+   "prox": "27/11 (novembro)",
+   "hist": [
+    {
+     "ref": "2025-01",
+     "mes": 0.27,
+     "acum12": 6.75
+    },
+    {
+     "ref": "2025-02",
+     "mes": 1.06,
+     "acum12": 8.44
+    },
+    {
+     "ref": "2025-03",
+     "mes": -0.34,
+     "acum12": 8.58
+    },
+    {
+     "ref": "2025-04",
+     "mes": 0.24,
+     "acum12": 8.5
+    },
+    {
+     "ref": "2025-05",
+     "mes": -0.49,
+     "acum12": 7.02
+    },
+    {
+     "ref": "2025-06",
+     "mes": -1.67,
+     "acum12": 4.39
+    },
+    {
+     "ref": "2025-07",
+     "mes": -0.77,
+     "acum12": 2.96
+    },
+    {
+     "ref": "2025-08",
+     "mes": 0.36,
+     "acum12": 3.03
+    },
+    {
+     "ref": "2025-09",
+     "mes": 0.42,
+     "acum12": 2.82
+    },
+    {
+     "ref": "2025-10",
+     "mes": -0.36,
+     "acum12": 0.92
+    },
+    {
+     "ref": "2025-11",
+     "mes": 0.27,
+     "acum12": -0.11
+    },
+    {
+     "ref": "2025-12",
+     "mes": -0.01,
+     "acum12": -1.05
+    },
+    {
+     "ref": "2026-01",
+     "mes": 0.41,
+     "acum12": -0.91
+    },
+    {
+     "ref": "2026-02",
+     "mes": -0.73,
+     "acum12": -2.67
+    },
+    {
+     "ref": "2026-03",
+     "mes": 0.52,
+     "acum12": -1.83
+    },
+    {
+     "ref": "2026-04",
+     "mes": 2.73,
+     "acum12": 0.61
+    },
+    {
+     "ref": "2026-05",
+     "mes": 0.84,
+     "acum12": 1.95
+    },
+    {
+     "ref": "2026-06",
+     "mes": -0.5,
+     "acum12": 3.16
+    },
+    {
+     "ref": "2026-07",
+     "mes": -1.16,
+     "acum12": 2.76
+    },
+    {
+     "ref": "2026-08",
+     "mes": -0.22,
+     "acum12": 2.16
+    },
+    {
+     "ref": "2026-09",
+     "mes": 1.57,
+     "acum12": 3.34
+    },
+    {
+     "ref": "2026-10",
+     "mes": 1.47,
+     "acum12": 5.24
+    }
+   ]
+  }
+ ],
+ "ceagesp": {
+  "meses": [
+   {
+    "ref": "2026-01",
+    "geral": -1.58,
+    "frutas": -8.42,
+    "legumes": 25.2,
+    "verduras": 18.58,
+    "diversos": -4.2,
+    "pescados": 12.13
+   },
+   {
+    "ref": "2026-02",
+    "geral": -2.97,
+    "frutas": -3.05,
+    "legumes": -1.75,
+    "verduras": 11.09,
+    "diversos": 5.98,
+    "pescados": -8.6
+   },
+   {
+    "ref": "2026-03",
+    "geral": 5.16,
+    "frutas": 3.07,
+    "legumes": 22.87,
+    "verduras": 4.29,
+    "diversos": 12.77,
+    "pescados": -0.97
+   },
+   {
+    "ref": "2026-04",
+    "geral": 2.31,
+    "frutas": 1.38,
+    "legumes": 6.11,
+    "verduras": -2.8,
+    "diversos": 5.95,
+    "pescados": 3.09
+   },
+   {
+    "ref": "2026-05",
+    "geral": 3.15,
+    "frutas": -0.02,
+    "legumes": 12.95,
+    "verduras": 4.44,
+    "diversos": 21.74,
+    "pescados": 1.0
+   },
+   {
+    "ref": "2026-06",
+    "geral": -1.63,
+    "frutas": -0.51,
+    "legumes": -8.94,
+    "verduras": 6.67,
+    "diversos": 1.06,
+    "pescados": -2.0
+   },
+   {
+    "ref": "2026-07",
+    "geral": -0.24,
+    "frutas": 7.6,
+    "legumes": -23.08,
+    "verduras": -13.29,
+    "diversos": -14.53,
+    "pescados": -2.04
+   },
+   {
+    "ref": "2026-08",
+    "geral": 3.14,
+    "frutas": 3.5,
+    "legumes": 5.41,
+    "verduras": -14.87,
+    "diversos": -4.68,
+    "pescados": 7.08
+   },
+   {
+    "ref": "2026-09",
+    "geral": 1.99,
+    "frutas": -0.35,
+    "legumes": 12.05,
+    "verduras": 27.1,
+    "diversos": 18.86,
+    "pescados": -5.41
+   }
+  ],
+  "acumulado": {
+   "ref": "2026-09",
+   "geral": {
+    "ano": 9.41,
+    "m12": 8.21
+   },
+   "frutas": {
+    "ano": 2.4,
+    "m12": 2.53
+   },
+   "legumes": {
+    "ano": 49.84,
+    "m12": 11.97
+   },
+   "verduras": {
+    "ano": 39.56,
+    "m12": 41.45
+   },
+   "diversos": {
+    "ano": 44.52,
+    "m12": 44.7
+   },
+   "pescados": {
+    "ano": 2.75,
+    "m12": 20.54
+   }
+  },
+  "destaques": {
+   "ref": "2026-09",
+   "setores": {
+    "frutas": {
+     "altas": [
+      [
+       "Morango",
+       49.62
+      ],
+      [
+       "Carambola",
+       46.03
+      ],
+      [
+       "Limão Taiti",
+       36.07
+      ],
+      [
+       "Figo",
+       22.76
+      ],
+      [
+       "Pera Williams importada",
+       16.1
+      ]
+     ],
+     "quedas": [
+      [
+       "Caju",
+       -31.43
+      ],
+      [
+       "Manga Tommy Atkins",
+       -27.9
+      ],
+      [
+       "Maracujá azedo",
+       -26.56
+      ],
+      [
+       "Manga Palmer",
+       -26.25
+      ],
+      [
+       "Melancia",
+       -21.24
+      ]
+     ]
+    },
+    "legumes": {
+     "altas": [
+      [
+       "Abobrinha italiana",
+       87.6
+      ],
+      [
+       "Tomate Carmem",
+       58.88
+      ],
+      [
+       "Quiabo",
+       52.44
+      ],
+      [
+       "Chuchu",
+       44.65
+      ],
+      [
+       "Maxixe",
+       37.62
+      ]
+     ],
+     "quedas": [
+      [
+       "Pimentão amarelo",
+       -38.29
+      ],
+      [
+       "Pimentão vermelho",
+       -35.27
+      ],
+      [
+       "Cenoura",
+       -18.26
+      ],
+      [
+       "Jiló",
+       -13.49
+      ],
+      [
+       "Berinjela",
+       -12.83
+      ]
+     ]
+    },
+    "verduras": {
+     "altas": [
+      [
+       "Coentro",
+       324.4
+      ],
+      [
+       "Salsa",
+       195.88
+      ],
+      [
+       "Rúcula hidropônica",
+       72.75
+      ],
+      [
+       "Brócolis ninja",
+       69.22
+      ],
+      [
+       "Brócolis ramoso",
+       60.75
+      ]
+     ],
+     "quedas": [
+      [
+       "Repolho verde",
+       -31.66
+      ],
+      [
+       "Salsão",
+       -9.5
+      ],
+      [
+       "Cogumelo Paris",
+       -8.94
+      ],
+      [
+       "Cogumelo Shimeji",
+       -5.63
+      ],
+      [
+       "Nabo",
+       -3.27
+      ]
+     ]
+    },
+    "diversos": {
+     "altas": [
+      [
+       "Batata lavada",
+       43.44
+      ],
+      [
+       "Cebola nacional",
+       38.3
+      ],
+      [
+       "Batata escovada",
+       20.61
+      ],
+      [
+       "Alho nacional",
+       12.35
+      ],
+      [
+       "Batata Asterix",
+       9.71
+      ]
+     ],
+     "quedas": [
+      [
+       "Ovos vermelhos",
+       -1.62
+      ],
+      [
+       "Amendoim sem pele",
+       -0.48
+      ],
+      [
+       "Ovos brancos",
+       -0.29
+      ]
+     ]
+    },
+    "pescados": {
+     "altas": [
+      [
+       "Sardinha falsa (Lages)",
+       53.26
+      ],
+      [
+       "Tainha",
+       35.44
+      ],
+      [
+       "Sardinha verdadeira",
+       12.27
+      ],
+      [
+       "Corvina",
+       10.62
+      ],
+      [
+       "Pescada branca",
+       7.5
+      ]
+     ],
+     "quedas": [
+      [
+       "Xaréu",
+       -30.59
+      ],
+      [
+       "Salmão importado",
+       -20.04
+      ],
+      [
+       "Bagre",
+       -12.22
+      ],
+      [
+       "Pintado",
+       -12.08
+      ],
+      [
+       "Peroá branco",
+       -9.09
+      ]
+     ]
+    }
+   }
+  }
+ },
+ "cepea": [
+  {
+   "produto": "Boi gordo",
+   "praca": "Indicador CEPEA/B3 – SP",
+   "valor": 389.2,
+   "unidade": "R$/@",
+   "data": "2026-10-29",
+   "var": 2.0,
+   "periodo": "semana",
+   "ant": {
+    "valor": 346.55,
+    "data": "2026-07-31"
+   }
+  },
+  {
+   "produto": "Soja",
+   "praca": "Indicador Cepea/Esalq – Paraná",
+   "valor": 152.47,
+   "unidade": "R$/sc 60 kg",
+   "data": "2026-10-30",
+   "var": 3.55,
+   "periodo": "semana"
+  },
+  {
+   "produto": "Soja",
+   "praca": "Paranaguá",
+   "valor": 158.28,
+   "unidade": "R$/sc 60 kg",
+   "data": "2026-10-30",
+   "var": 4.19,
+   "periodo": "semana"
+  },
+  {
+   "produto": "Milho",
+   "praca": "Indicador Esalq/B3 – Campinas",
+   "valor": 65.59,
+   "unidade": "R$/sc 60 kg",
+   "data": "2026-10-30",
+   "var": 2.1,
+   "periodo": "semana"
+  },
+  {
+   "produto": "Café arábica",
+   "praca": "Indicador Cepea/Esalq",
+   "valor": 1590.72,
+   "unidade": "R$/sc 60 kg",
+   "data": "2026-10-30",
+   "var": null,
+   "periodo": "semana",
+   "ant": {
+    "valor": 1744.18,
+    "data": "2026-07-31"
+   }
+  },
+  {
+   "produto": "Café robusta",
+   "praca": "Indicador Cepea/Esalq",
+   "valor": 965.47,
+   "unidade": "R$/sc 60 kg",
+   "data": "2026-10-30",
+   "var": null,
+   "periodo": "semana",
+   "ant": {
+    "valor": 1092.56,
+    "data": "2026-07-31"
+   }
+  },
+  {
+   "produto": "Suíno vivo",
+   "praca": "Granjas – SP",
+   "valor": 6.9,
+   "unidade": "R$/kg",
+   "data": "2026-10-30",
+   "var": -0.4,
+   "periodo": "semana"
+  },
+  {
+   "produto": "Suíno carcaça especial",
+   "praca": "Atacado – SP",
+   "valor": 10.23,
+   "unidade": "R$/kg",
+   "data": "2026-10-29",
+   "var": -2.4,
+   "periodo": "semana"
+  },
+  {
+   "produto": "Frango resfriado",
+   "praca": "Atacado – SP",
+   "valor": 8.26,
+   "unidade": "R$/kg",
+   "data": "2026-10-29",
+   "var": -2.8,
+   "periodo": "semana"
+  },
+  {
+   "produto": "Leite ao produtor",
+   "praca": "Média Brasil",
+   "valor": 2.76,
+   "unidade": "R$/litro",
+   "data": "2026-10",
+   "var": -4.4,
+   "periodo": "mês"
+  }
+ ],
+ "combustiveis": {
+  "semana": "25/10 a 31/10/2026",
+  "semana_glp_estados": "19/04 a 25/04/2026",
+  "brasil": {
+   "semana": "01/11 a 07/11/2026",
+   "gasolina": 6.47,
+   "etanol": 4.15,
+   "diesel_s10": 7.3,
+   "glp": 114.73,
+   "glp_semana": "11/10 a 17/10/2026"
+  },
+  "hist_brasil": [
+   {
+    "semana": "2026-09-26",
+    "gasolina": 6.55,
+    "diesel_s10": 7.33,
+    "glp": 114.8
+   },
+   {
+    "semana": "2026-10-03",
+    "gasolina": 6.58
+   },
+   {
+    "semana": "2026-10-17",
+    "glp": 114.73
+   },
+   {
+    "semana": "2026-10-24",
+    "gasolina": 6.49,
+    "etanol": 4.11,
+    "diesel_s10": 7.32
+   },
+   {
+    "semana": "2026-10-31",
+    "gasolina": 6.48,
+    "etanol": 4.13,
+    "diesel_s10": 7.31
+   },
+   {
+    "semana": "2026-11-07",
+    "gasolina": 6.47,
+    "etanol": 4.15,
+    "diesel_s10": 7.3
+   }
+  ],
+  "estados": [
+   {
+    "uf": "AC",
+    "nome": "Acre",
+    "gasolina": 7.43,
+    "diesel_s10": 8.25,
+    "etanol": 4.91,
+    "glp": 123.0
+   },
+   {
+    "uf": "AL",
+    "nome": "Alagoas",
+    "gasolina": 6.6,
+    "diesel_s10": 7.33,
+    "etanol": 4.92,
+    "glp": 107.49
+   },
+   {
+    "uf": "AP",
+    "nome": "Amapá",
+    "gasolina": 6.36,
+    "diesel_s10": 7.29,
+    "etanol": 5.49,
+    "glp": 127.64
+   },
+   {
+    "uf": "AM",
+    "nome": "Amazonas",
+    "gasolina": 6.96,
+    "diesel_s10": 7.17,
+    "etanol": 4.85,
+    "glp": 125.44
+   },
+   {
+    "uf": "BA",
+    "nome": "Bahia",
+    "gasolina": 6.69,
+    "diesel_s10": 7.59,
+    "etanol": 4.5,
+    "glp": 115.96
+   },
+   {
+    "uf": "CE",
+    "nome": "Ceará",
+    "gasolina": 6.92,
+    "diesel_s10": 7.29,
+    "etanol": 4.96,
+    "glp": 121.16
+   },
+   {
+    "uf": "DF",
+    "nome": "Distrito Federal",
+    "gasolina": 6.38,
+    "diesel_s10": 7.41,
+    "etanol": 4.33,
+    "glp": 107.8
+   },
+   {
+    "uf": "ES",
+    "nome": "Espírito Santo",
+    "gasolina": 6.42,
+    "diesel_s10": 6.91,
+    "etanol": 4.76,
+    "glp": 104.69
+   },
+   {
+    "uf": "GO",
+    "nome": "Goiás",
+    "gasolina": 6.29,
+    "diesel_s10": 7.25,
+    "etanol": 3.87,
+    "glp": 113.81
+   },
+   {
+    "uf": "MA",
+    "nome": "Maranhão",
+    "gasolina": 6.44,
+    "diesel_s10": 7.38,
+    "etanol": 4.86,
+    "glp": 124.5
+   },
+   {
+    "uf": "MT",
+    "nome": "Mato Grosso",
+    "gasolina": 6.74,
+    "diesel_s10": 7.58,
+    "etanol": 4.09,
+    "glp": 128.9
+   },
+   {
+    "uf": "MS",
+    "nome": "Mato Grosso do Sul",
+    "gasolina": 6.39,
+    "diesel_s10": 7.36,
+    "etanol": 4.01,
+    "glp": 121.46
+   },
+   {
+    "uf": "MG",
+    "nome": "Minas Gerais",
+    "gasolina": 6.35,
+    "diesel_s10": 7.04,
+    "etanol": 4.35,
+    "glp": 112.11
+   },
+   {
+    "uf": "PA",
+    "nome": "Pará",
+    "gasolina": 6.53,
+    "diesel_s10": 7.56,
+    "etanol": 4.51,
+    "glp": 117.96
+   },
+   {
+    "uf": "PB",
+    "nome": "Paraíba",
+    "gasolina": 6.29,
+    "diesel_s10": 7.26,
+    "etanol": 4.53,
+    "glp": 109.77
+   },
+   {
+    "uf": "PR",
+    "nome": "Paraná",
+    "gasolina": 6.56,
+    "diesel_s10": 7.34,
+    "etanol": 4.24,
+    "glp": 113.06
+   },
+   {
+    "uf": "PE",
+    "nome": "Pernambuco",
+    "gasolina": 6.82,
+    "diesel_s10": 7.17,
+    "etanol": 4.84,
+    "glp": 105.8
+   },
+   {
+    "uf": "PI",
+    "nome": "Piauí",
+    "gasolina": 6.67,
+    "diesel_s10": 7.72,
+    "etanol": 4.81,
+    "glp": 114.62
+   },
+   {
+    "uf": "RJ",
+    "nome": "Rio de Janeiro",
+    "gasolina": 6.6,
+    "diesel_s10": 7.13,
+    "etanol": 4.8,
+    "glp": 106.53
+   },
+   {
+    "uf": "RN",
+    "nome": "Rio Grande do Norte",
+    "gasolina": 6.67,
+    "diesel_s10": 7.46,
+    "etanol": 5.17,
+    "glp": 111.59
+   },
+   {
+    "uf": "RS",
+    "nome": "Rio Grande do Sul",
+    "gasolina": 6.12,
+    "diesel_s10": 7.15,
+    "etanol": 4.55,
+    "glp": 117.94
+   },
+   {
+    "uf": "RO",
+    "nome": "Rondônia",
+    "gasolina": 7.42,
+    "diesel_s10": 7.54,
+    "etanol": 5.1,
+    "glp": 127.85
+   },
+   {
+    "uf": "RR",
+    "nome": "Roraima",
+    "gasolina": 7.57,
+    "diesel_s10": 7.64,
+    "etanol": 5.38,
+    "glp": 141.73
+   },
+   {
+    "uf": "SC",
+    "nome": "Santa Catarina",
+    "gasolina": 6.32,
+    "diesel_s10": 7.21,
+    "etanol": 4.44,
+    "glp": 124.05
+   },
+   {
+    "uf": "SP",
+    "nome": "São Paulo",
+    "gasolina": 6.35,
+    "diesel_s10": 7.32,
+    "etanol": 3.92,
+    "glp": 114.98
+   },
+   {
+    "uf": "SE",
+    "nome": "Sergipe",
+    "gasolina": 6.94,
+    "diesel_s10": 7.34,
+    "etanol": 5.2,
+    "glp": 112.37
+   },
+   {
+    "uf": "TO",
+    "nome": "Tocantins",
+    "gasolina": 6.9,
+    "diesel_s10": 7.3,
+    "etanol": 4.99,
+    "glp": 134.12
+   }
+  ]
+ },
+ "energia": {
+  "ref": "Tarifas ANEEL vigentes em 01/11/2026",
+  "media_b1_dez26_mwh": 851,
+  "media_b1_dez25_mwh": 786,
+  "distribuidoras": [
+   {
+    "uf": "AC",
+    "distribuidora": "Energisa Acre",
+    "tarifa": 0.83
+   },
+   {
+    "uf": "AL",
+    "distribuidora": "Equatorial Alagoas",
+    "tarifa": 0.851
+   },
+   {
+    "uf": "AP",
+    "distribuidora": "CEA Equatorial",
+    "tarifa": 0.825
+   },
+   {
+    "uf": "AM",
+    "distribuidora": "Amazonas Energia",
+    "tarifa": 0.876
+   },
+   {
+    "uf": "BA",
+    "distribuidora": "Neoenergia Coelba",
+    "tarifa": 0.878
+   },
+   {
+    "uf": "CE",
+    "distribuidora": "Enel Ceará",
+    "tarifa": 0.702
+   },
+   {
+    "uf": "DF",
+    "distribuidora": "Neoenergia Brasília",
+    "tarifa": 0.834
+   },
+   {
+    "uf": "ES",
+    "distribuidora": "EDP Espírito Santo",
+    "tarifa": 0.844
+   },
+   {
+    "uf": "GO",
+    "distribuidora": "Equatorial Goiás",
+    "tarifa": 0.954
+   },
+   {
+    "uf": "MA",
+    "distribuidora": "Equatorial Maranhão",
+    "tarifa": 0.889
+   },
+   {
+    "uf": "MT",
+    "distribuidora": "Energisa Mato Grosso",
+    "tarifa": 0.899
+   },
+   {
+    "uf": "MS",
+    "distribuidora": "Energisa Mato Grosso do Sul",
+    "tarifa": 0.987
+   },
+   {
+    "uf": "MG",
+    "distribuidora": "Cemig",
+    "tarifa": 0.903
+   },
+   {
+    "uf": "PA",
+    "distribuidora": "Equatorial Pará",
+    "tarifa": 1.043
+   },
+   {
+    "uf": "PB",
+    "distribuidora": "Energisa Paraíba",
+    "tarifa": 0.71
+   },
+   {
+    "uf": "PR",
+    "distribuidora": "Copel",
+    "tarifa": 0.768
+   },
+   {
+    "uf": "PE",
+    "distribuidora": "Neoenergia Pernambuco",
+    "tarifa": 0.799
+   },
+   {
+    "uf": "PI",
+    "distribuidora": "Equatorial Piauí",
+    "tarifa": 0.947
+   },
+   {
+    "uf": "RJ",
+    "distribuidora": "Enel RJ",
+    "tarifa": 1.061
+   },
+   {
+    "uf": "RJ",
+    "distribuidora": "Light",
+    "tarifa": 0.881
+   },
+   {
+    "uf": "RN",
+    "distribuidora": "Neoenergia Cosern",
+    "tarifa": 0.776
+   },
+   {
+    "uf": "RS",
+    "distribuidora": "RGE",
+    "tarifa": 0.945
+   },
+   {
+    "uf": "RS",
+    "distribuidora": "CEEE Equatorial",
+    "tarifa": 0.822
+   },
+   {
+    "uf": "SC",
+    "distribuidora": "Celesc",
+    "tarifa": 0.76
+   },
+   {
+    "uf": "SP",
+    "distribuidora": "CPFL Paulista",
+    "tarifa": 0.739
+   },
+   {
+    "uf": "SP",
+    "distribuidora": "CPFL Piratininga",
+    "tarifa": 0.759
+   },
+   {
+    "uf": "SP",
+    "distribuidora": "Enel SP",
+    "tarifa": 0.789
+   },
+   {
+    "uf": "SP",
+    "distribuidora": "EDP SP",
+    "tarifa": 0.802
+   },
+   {
+    "uf": "SE",
+    "distribuidora": "Energisa Sergipe",
+    "tarifa": 0.755
+   },
+   {
+    "uf": "TO",
+    "distribuidora": "Energisa Tocantins",
+    "tarifa": 0.993
+   }
+  ]
+ },
+ "ibge": {
+  "populacao": {
+   "ano": 2026,
+   "brasil": 214211951,
+   "brasil_ant": 213421037,
+   "estados": [
+    {
+     "uf": "SP",
+     "nome": "São Paulo",
+     "pop": 46179008
+    },
+    {
+     "uf": "MG",
+     "nome": "Minas Gerais",
+     "pop": 21460311
+    },
+    {
+     "uf": "RJ",
+     "nome": "Rio de Janeiro",
+     "pop": 17225410
+    },
+    {
+     "uf": "BA",
+     "nome": "Bahia",
+     "pop": 14889472
+    },
+    {
+     "uf": "PR",
+     "nome": "Paraná",
+     "pop": 11952456
+    },
+    {
+     "uf": "RS",
+     "nome": "Rio Grande do Sul",
+     "pop": 11233317
+    },
+    {
+     "uf": "PE",
+     "nome": "Pernambuco",
+     "pop": 9583176
+    },
+    {
+     "uf": "CE",
+     "nome": "Ceará",
+     "pop": 9302211
+    },
+    {
+     "uf": "PA",
+     "nome": "Pará",
+     "pop": 8756324
+    },
+    {
+     "uf": "SC",
+     "nome": "Santa Catarina",
+     "pop": 8312759
+    },
+    {
+     "uf": "GO",
+     "nome": "Goiás",
+     "pop": 7495033
+    },
+    {
+     "uf": "MA",
+     "nome": "Maranhão",
+     "pop": 7024557
+    },
+    {
+     "uf": "AM",
+     "nome": "Amazonas",
+     "pop": 4360926
+    },
+    {
+     "uf": "PB",
+     "nome": "Paraíba",
+     "pop": 4182828
+    },
+    {
+     "uf": "ES",
+     "nome": "Espírito Santo",
+     "pop": 4150692
+    },
+    {
+     "uf": "MT",
+     "nome": "Mato Grosso",
+     "pop": 3950330
+    },
+    {
+     "uf": "RN",
+     "nome": "Rio Grande do Norte",
+     "pop": 3463737
+    },
+    {
+     "uf": "PI",
+     "nome": "Piauí",
+     "pop": 3392617
+    },
+    {
+     "uf": "AL",
+     "nome": "Alagoas",
+     "pop": 3221128
+    },
+    {
+     "uf": "DF",
+     "nome": "Distrito Federal",
+     "pop": 3009996
+    },
+    {
+     "uf": "MS",
+     "nome": "Mato Grosso do Sul",
+     "pop": 2946317
+    },
+    {
+     "uf": "SE",
+     "nome": "Sergipe",
+     "pop": 2307255
+    },
+    {
+     "uf": "RO",
+     "nome": "Rondônia",
+     "pop": 1757338
+    },
+    {
+     "uf": "TO",
+     "nome": "Tocantins",
+     "pop": 1595994
+    },
+    {
+     "uf": "AC",
+     "nome": "Acre",
+     "pop": 887794
+    },
+    {
+     "uf": "AP",
+     "nome": "Amapá",
+     "pop": 809953
+    },
+    {
+     "uf": "RR",
+     "nome": "Roraima",
+     "pop": 761012
+    }
+   ]
+  },
+  "pib_pc": {
+   "ano": 2023,
+   "brasil": 53886.67,
+   "estados": [
+    {
+     "uf": "AC",
+     "nome": "Acre",
+     "valor": 31800.0,
+     "aprox": true
+    },
+    {
+     "uf": "AL",
+     "nome": "Alagoas",
+     "valor": 28600.0,
+     "aprox": true
+    },
+    {
+     "uf": "AP",
+     "nome": "Amapá",
+     "valor": 38300.0,
+     "aprox": true
+    },
+    {
+     "uf": "AM",
+     "nome": "Amazonas",
+     "valor": 41000.0,
+     "aprox": true
+    },
+    {
+     "uf": "BA",
+     "nome": "Bahia",
+     "valor": 30700.0,
+     "aprox": true
+    },
+    {
+     "uf": "CE",
+     "nome": "Ceará",
+     "valor": 26400.0,
+     "aprox": true
+    },
+    {
+     "uf": "DF",
+     "nome": "Distrito Federal",
+     "valor": 129790.44,
+     "aprox": false
+    },
+    {
+     "uf": "ES",
+     "nome": "Espírito Santo",
+     "valor": 54732.78,
+     "aprox": false
+    },
+    {
+     "uf": "GO",
+     "nome": "Goiás",
+     "valor": 47721.56,
+     "aprox": false
+    },
+    {
+     "uf": "MA",
+     "nome": "Maranhão",
+     "valor": 22020.63,
+     "aprox": false
+    },
+    {
+     "uf": "MT",
+     "nome": "Mato Grosso",
+     "valor": 74620.05,
+     "aprox": false
+    },
+    {
+     "uf": "MS",
+     "nome": "Mato Grosso do Sul",
+     "valor": 66884.75,
+     "aprox": false
+    },
+    {
+     "uf": "MG",
+     "nome": "Minas Gerais",
+     "valor": 47321.23,
+     "aprox": false
+    },
+    {
+     "uf": "PA",
+     "nome": "Pará",
+     "valor": 31300.0,
+     "aprox": true
+    },
+    {
+     "uf": "PB",
+     "nome": "Paraíba",
+     "valor": 24200.0,
+     "aprox": true
+    },
+    {
+     "uf": "PR",
+     "nome": "Paraná",
+     "valor": 58624.33,
+     "aprox": false
+    },
+    {
+     "uf": "PE",
+     "nome": "Pernambuco",
+     "valor": 29600.0,
+     "aprox": true
+    },
+    {
+     "uf": "PI",
+     "nome": "Piauí",
+     "valor": 24800.0,
+     "aprox": true
+    },
+    {
+     "uf": "RJ",
+     "nome": "Rio de Janeiro",
+     "valor": 73052.55,
+     "aprox": false
+    },
+    {
+     "uf": "RN",
+     "nome": "Rio Grande do Norte",
+     "valor": 30700.0,
+     "aprox": true
+    },
+    {
+     "uf": "RS",
+     "nome": "Rio Grande do Sul",
+     "valor": 59736.2,
+     "aprox": false
+    },
+    {
+     "uf": "RO",
+     "nome": "Rondônia",
+     "valor": 48353.38,
+     "aprox": false
+    },
+    {
+     "uf": "RR",
+     "nome": "Roraima",
+     "valor": 39300.0,
+     "aprox": true
+    },
+    {
+     "uf": "SC",
+     "nome": "Santa Catarina",
+     "valor": 67459.74,
+     "aprox": false
+    },
+    {
+     "uf": "SP",
+     "nome": "São Paulo",
+     "valor": 77566.27,
+     "aprox": false
+    },
+    {
+     "uf": "SE",
+     "nome": "Sergipe",
+     "valor": 27500.0,
+     "aprox": true
+    },
+    {
+     "uf": "TO",
+     "nome": "Tocantins",
+     "valor": 42600.0,
+     "aprox": true
+    }
+   ]
+  }
+ }
+}

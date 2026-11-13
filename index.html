@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boletim Econômico Hasta</title>
+<meta name="description" content="Boletim econômico da Hasta: mercado, juros, inflação, agro, combustíveis, energia e dados do IBGE, com variações históricas.">
+<meta property="og:title" content="Boletim Econômico Hasta">
+<meta property="og:description" content="Mercado, inflação, agro, combustíveis e energia num só lugar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=League+Spartan:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="https://hastamarketing.com" target="_top" aria-label="Hasta — página inicial"><img src="assets/logo-hasta.png" alt="hasta.mkt" class="logo" width="132" height="37"><span class="marca-tag">boletim</span></a>
+    <div class="atualizado" id="atualizado">Carregando…</div>
+  </div>
+  <nav class="wrap abas" aria-label="Seções">
+    <a href="#mercado">Mercado</a><a href="#juros">Juros e inflação</a><a href="#agro">Agro</a><a href="#energia">Combustíveis e energia</a><a href="#brasil">Brasil (IBGE)</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Boletim Econômico</h1>
+    <p>Os números que mexem com preço, custo e demanda — reunidos e atualizados automaticamente a partir de fontes oficiais.</p>
+  </section>
+
+  <section id="mercado" class="secao">
+    <div class="sec-cab"><span class="sec-etq">Mercado</span><h2>Bolsa, câmbio e commodities</h2><p class="sec-ref" id="ref-mercado"></p></div>
+    <div class="grade-kpi" id="kpis-mercado"></div>
+    <div class="grade-2">
+      <div class="cartao"><h3>Maiores altas do Ibovespa</h3><p class="sub" id="ref-altas"></p><div id="altas" class="lista-var"></div></div>
+      <div class="cartao"><h3>Maiores quedas do Ibovespa</h3><p class="sub" id="ref-baixas"></p><div id="baixas" class="lista-var"></div></div>
+    </div>
+  </section>
+
+  <section id="juros" class="secao">
+    <div class="sec-cab"><span class="sec-etq">Juros e inflação</span><h2>Selic e índices de preços</h2></div>
+    <div class="grade-kpi" id="kpis-juros"></div>
+    <div class="cartao">
+      <div class="cartao-cab"><h3 id="tit-infl">Histórico</h3>
+        <div class="controles">
+          <div class="seg" id="sel-indice" role="tablist"></div>
+          <div class="seg" id="sel-modo" role="tablist"><button data-v="mes" class="on">Mensal</button><button data-v="acum12">12 meses</button></div>
+        </div>
+      </div>
+      <div class="graf"><canvas id="g-infl" aria-label="Gráfico de inflação"></canvas></div>
+      <p class="nota" id="nota-infl"></p>
+    </div>
+  </section>
+
+  <section id="agro" class="secao">
+    <div class="sec-cab"><span class="sec-etq">Agro</span><h2>Índice CEAGESP por segmento</h2><p class="sec-ref" id="ref-ceagesp"></p></div>
+    <div class="grade-kpi seis" id="kpis-ceagesp"></div>
+    <div class="cartao">
+      <div class="cartao-cab"><h3>Variação mensal: segmento × índice geral</h3><div class="seg" id="sel-setor"></div></div>
+      <div class="graf"><canvas id="g-ceagesp"></canvas></div>
+      <div class="legenda" id="leg-ceagesp"></div>
+    </div>
+    <div class="cartao">
+      <div class="cartao-cab"><h3>Maiores altas e quedas por segmento</h3><div class="seg" id="sel-setor2"></div></div>
+      <p class="sub" id="ref-dest"></p>
+      <div class="grade-2 interna"><div><h4>▲ Altas</h4><div id="dest-altas" class="lista-var"></div></div><div><h4>▼ Quedas</h4><div id="dest-quedas" class="lista-var"></div></div></div>
+    </div>
+    <div class="sec-cab menor"><h2>Indicadores CEPEA</h2><p class="sec-ref">Preços ao produtor e atacado — Cepea/Esalq-USP</p></div>
+    <div class="cartao tabela-wrap"><table class="tabela" id="t-cepea"></table></div>
+  </section>
+
+  <section id="energia" class="secao">
+    <div class="sec-cab"><span class="sec-etq">Combustíveis e energia</span><h2>Preços na bomba, botijão e conta de luz</h2><p class="sec-ref" id="ref-comb"></p></div>
+    <div class="grade-kpi" id="kpis-comb"></div>
+    <div class="cartao">
+      <div class="cartao-cab"><h3>Ranking por estado</h3><div class="seg" id="sel-comb"></div></div>
+      <p class="sub" id="ref-rank"></p>
+      <div id="rank-comb" class="ranking"></div>
+    </div>
+    <div class="cartao">
+      <div class="cartao-cab"><h3>Tarifa residencial de energia (B1) por distribuidora</h3></div>
+      <p class="sub" id="ref-energia"></p>
+      <div id="rank-energia" class="ranking"></div>
+    </div>
+  </section>
+
+  <section id="brasil" class="secao">
+    <div class="sec-cab"><span class="sec-etq">Brasil</span><h2>População e PIB per capita (IBGE)</h2></div>
+    <div class="grade-kpi" id="kpis-ibge"></div>
+    <div class="cartao">
+      <div class="cartao-cab"><h3>Estados</h3><div class="seg" id="sel-ibge"><button data-v="pop" class="on">População</button><button data-v="pib">PIB per capita</button></div></div>
+      <div id="rank-ibge" class="ranking"></div>
+      <p class="nota" id="nota-ibge"></p>
+    </div>
+  </section>
+
+  <section class="secao fontes">
+    <h2>Fontes e metodologia</h2>
+    <ul id="fontes"></ul>
+    <p class="nota">Valores de mercado referem-se ao último fechamento disponível. Índices de preços seguem o calendário de divulgação de cada instituto. Este boletim é informativo e não constitui recomendação de investimento.</p>
+  </section>
+</main>
+
+<footer class="rodape"><div class="wrap rodape-in">
+  <img src="assets/logo-hasta-dizeres.png" alt="hasta.mkt — Representação &amp; Marketing" class="logo-rodape" width="195" height="67">
+  <div class="rodape-links"><span>Boletim elaborado pela Hasta</span><a href="https://www.instagram.com/hasta.mkt" target="_blank" rel="noopener">@hasta.mkt</a><a href="https://hastamarketing.com" target="_top">hastamarketing.com</a></div>
+</div></footer>
+
+<div id="tip" class="tip" role="tooltip" hidden></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
