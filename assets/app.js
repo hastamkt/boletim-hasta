@@ -341,6 +341,46 @@
     avisarAltura(); window.addEventListener("resize", avisarAltura); setInterval(avisarAltura, 1500);
   }
 
+  /* ---------------- Cadastro (nome, telefone, e-mail) ---------------- */
+  var CHAVE = "boletimHastaCadastro";
+  function jaCadastrado() { try { return !!localStorage.getItem(CHAVE); } catch (e) { return false; } }
+  function mascaraTel(v) {
+    v = v.replace(/\D/g, "").slice(0, 11);
+    if (v.length > 10) return "(" + v.slice(0, 2) + ") " + v.slice(2, 7) + "-" + v.slice(7);
+    if (v.length > 6) return "(" + v.slice(0, 2) + ") " + v.slice(2, 6) + "-" + v.slice(6);
+    if (v.length > 2) return "(" + v.slice(0, 2) + ") " + v.slice(2);
+    return v;
+  }
+  function cadastro() {
+    var modal = $("cadastro"); if (!modal || jaCadastrado()) return;
+    document.documentElement.classList.add("bloqueado"); modal.hidden = false;
+    var f = $("cad-form"), erro = $("cad-erro"), btn = $("cad-btn");
+    f.telefone.addEventListener("input", function () { f.telefone.value = mascaraTel(f.telefone.value); });
+    setTimeout(function () { try { f.nome.focus(); } catch (e) {} }, 50);
+    f.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var nome = f.nome.value.trim(), tel = f.telefone.value.replace(/\D/g, ""), email = f.email.value.trim();
+      if (nome.length < 2) { erro.textContent = "Informe seu nome."; f.nome.focus(); return; }
+      if (tel.length < 10) { erro.textContent = "Informe um telefone com DDD."; f.telefone.focus(); return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { erro.textContent = "Informe um e-mail válido."; f.email.focus(); return; }
+      if (!f.aceite.checked) { erro.textContent = "Marque a autorização para continuar."; return; }
+      erro.textContent = ""; btn.disabled = true; btn.textContent = "Enviando…";
+      var corpo = new URLSearchParams({ nome: nome, telefone: f.telefone.value, email: email, aceite: "sim", site: f.site.value,
+        origem: (document.referrer || location.href).slice(0, 200), ua: navigator.userAgent.slice(0, 200) });
+      var url = (window.BOLETIM_CONFIG || {}).cadastroUrl;
+      var envio = url ? fetch(url, { method: "POST", mode: "no-cors", body: corpo }) : Promise.resolve();
+      envio.then(liberar, function () {
+        btn.disabled = false; btn.textContent = "Acessar o boletim";
+        erro.textContent = "Não foi possível enviar agora. Verifique sua conexão e tente de novo.";
+      });
+      function liberar() {
+        try { localStorage.setItem(CHAVE, new Date().toISOString()); } catch (e) {}
+        modal.hidden = true; document.documentElement.classList.remove("bloqueado"); avisarAltura();
+      }
+    });
+  }
+
+  cadastro();
   if (window.BOLETIM_DATA) iniciar(window.BOLETIM_DATA);
   else fetch("data/boletim.json?v=" + Date.now()).then(function (r) { return r.json(); }).then(iniciar).catch(function (e) { $("atualizado").textContent = "Não foi possível carregar os dados."; console.error(e); });
 })();

@@ -110,6 +110,27 @@
 </div></footer>
 
 <div id="tip" class="tip" role="tooltip" hidden></div>
+
+<!-- Cadastro: libera o boletim após nome, telefone e e-mail -->
+<div id="cadastro" class="cadastro" role="dialog" aria-modal="true" aria-labelledby="cad-titulo" hidden>
+  <form id="cad-form" class="cad-caixa" novalidate>
+    <img src="assets/logo-hasta.png" alt="hasta.mkt" class="cad-logo" width="132" height="37">
+    <h2 id="cad-titulo">Acesse o Boletim Econômico</h2>
+    <p class="cad-sub">Gratuito. Preencha uma vez e acompanhe mercado, inflação, agro, combustíveis e energia atualizados todos os dias.</p>
+    <label>Nome<input name="nome" autocomplete="name" required maxlength="120"></label>
+    <label>Telefone (WhatsApp)<input name="telefone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(27) 99999-9999" maxlength="16"></label>
+    <label>E-mail<input name="email" type="email" autocomplete="email" required maxlength="160"></label>
+    <input name="site" class="cad-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label class="cad-check"><input type="checkbox" name="aceite" required> <span>Autorizo a Hasta a guardar meus dados para me enviar o boletim e conteúdos relacionados. Posso pedir a exclusão a qualquer momento.</span></label>
+    <p class="cad-erro" id="cad-erro" role="alert"></p>
+    <button type="submit" id="cad-btn">Acessar o boletim</button>
+    <p class="cad-lgpd">Seus dados ficam com a Hasta, não são vendidos nem compartilhados e são tratados conforme a LGPD. Para corrigir ou excluir, fale com <a href="https://www.instagram.com/hasta.mkt" target="_blank" rel="noopener">@hasta.mkt</a>.</p>
+  </form>
+</div>
+<script>
+  /* Cole aqui o endereço do App da Web do Google Apps Script (planilha de cadastros) */
+  window.BOLETIM_CONFIG = { cadastroUrl: "" };
+</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script src="assets/app.js"></script>
 </body>
