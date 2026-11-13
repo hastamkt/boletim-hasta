@@ -43,8 +43,17 @@ def nome_para_uf(nome):
     return None
 
 
-def get_json(url, **kw):
-    r = S.get(url, timeout=40, **kw); r.raise_for_status(); return r.json()
+def get_json(url, tentativas=3, **kw):
+    ultimo = None
+    for t in range(tentativas):
+        try:
+            r = S.get(url, timeout=(20, 90), **kw); r.raise_for_status(); return r.json()
+        except requests.HTTPError:
+            raise
+        except Exception as e:  # timeout / conexão: tenta de novo
+            ultimo = e
+            import time; time.sleep(5 * (t + 1))
+    raise ultimo
 
 
 def br_num(s):
@@ -88,16 +97,43 @@ def ibov_composicao():
     return [(r["cod"].strip(), r.get("asset", "").strip().title()) for r in j["results"]]
 
 
+def awesome_hist(par, dias=365):
+    j = get_json(f"https://economia.awesomeapi.com.br/json/daily/{par}/{dias}")
+    pts = sorted((dt.datetime.fromtimestamp(int(x["timestamp"]), TZ).date().isoformat(), float(x["bid"])) for x in j)
+    out = {}
+    for dia, v in pts:  # um valor por dia (o último)
+        out[dia] = v
+    return sorted(out.items())
+
+
 def bloco_mercado(d):
-    ativos, data_ref = [], None
+    ativos, data_ref, falhas = [], None, []
+    anteriores = {a["id"]: a for a in d.get("mercado", {}).get("ativos", [])}
     for aid, (sym, nome, un) in YAHOO.items():
-        pts = yahoo(sym)
+        pts = None
+        for fonte in (lambda: yahoo(sym), lambda: awesome_hist({"bitcoin": "BTC-BRL", "dolar": "USD-BRL", "euro": "EUR-BRL"}[aid])):
+            try:
+                pts = fonte()
+                if len(pts) >= 2:
+                    break
+            except Exception as e:
+                falhas.append(f"{aid}: {e}")
+                pts = None
+        if not pts:
+            if aid in anteriores:
+                ativos.append(anteriores[aid])
+            continue
         hoje = pts[-1][0]; data_ref = max(data_ref or hoje, hoje)
         ano = hoje[:4]; mes = hoje[:7]
         ativos.append({"id": aid, "nome": nome, "unidade": un, "valor": round(pts[-1][1], 4), "var_dia": r2(variacao(pts, 1)),
                        "var_mes": r2(variacao(pts, desde=mes + "-01")), "var_ano": r2(variacao(pts, desde=ano + "-01-01")),
                        "var_12m": round((pts[-1][1] / pts[0][1] - 1) * 100, 2),
-                       "hist": [[p[0], round(p[1], 4)] for p in pts[-260:]]})
+                       "data": hoje, "hist": [[p[0], round(p[1], 4)] for p in pts[-260:]]})
+    novos = len(ativos) - sum(1 for a in ativos if a is anteriores.get(a["id"]))
+    if novos == 0:
+        raise RuntimeError("nenhuma cotação obtida: " + "; ".join(falhas[:3]))
+    for a in ativos:
+        a.setdefault("data", a["hist"][-1][0] if a.get("hist") else None)
     m = d.setdefault("mercado", {})
     m["ativos"], m["data"] = ativos, data_ref
     # maiores altas / quedas entre as ações do Ibovespa
@@ -119,8 +155,12 @@ def bloco_mercado(d):
 
 
 # ------------------------------------------------------------------ BCB (Selic e inflação)
-def sgs(cod, n=30):
-    j = get_json(f"https://api.bcb.gov.br/dados/serie/bcdata.sgs.{cod}/dados/ultimos/{n}", params={"formato": "json"})
+def sgs(cod, n=30, diaria=False):
+    # a API do BCB limita "ultimos/N" a 20 registros; por isso pedimos um intervalo de datas
+    hoje = dt.date.today()
+    ini = hoje - dt.timedelta(days=(n * 2 + 10) if diaria else (n * 31 + 40))
+    j = get_json(f"https://api.bcb.gov.br/dados/serie/bcdata.sgs.{cod}/dados",
+                 params={"formato": "json", "dataInicial": ini.strftime("%d/%m/%Y"), "dataFinal": hoje.strftime("%d/%m/%Y")})
     return [(dt.datetime.strptime(x["data"], "%d/%m/%Y").date(), float(x["valor"])) for x in j]
 
 
@@ -132,7 +172,7 @@ def acumula(vals):
 
 
 def bloco_juros(d):
-    serie = sgs(432, 800)  # meta Selic diária
+    serie = sgs(432, 800, diaria=True)  # meta Selic diária
     mudancas = [serie[0]]
     for dia, v in serie[1:]:
         if v != mudancas[-1][1]:
@@ -195,16 +235,18 @@ def ceagesp_mes(ano, m):
             mm = re.search(r"setor de\s+" + k + r"\s+\w+\s+([+\-]?\d+,\d+)%", sem_acento(txt).lower())
             if mm:
                 reg[k] = br_num(mm.group(1))
-    # destaques: "Maiores altas" / "principais altas ocorreram nos preços de X (+n%)"
+    # destaques: em cada "O setor de X ..." → "principais altas ocorreram nos preços de A (+n%), B (+n%)..."
     dest = {}
-    for k in SET_CEA:
-        bloco = re.search(r"setor de\s+" + k.upper() + r"(.{0,1500}?)(?:O setor de|INDICE CEAGESP|$)", sem_acento(txt))
-        if not bloco:
+    for trecho in re.split(r"O setor de\s+", txt)[1:]:
+        k = sem_acento(trecho.split()[0]).lower()
+        if k not in SET_CEA:
             continue
-        pares = re.findall(r"([A-Z][A-Z \-\"']{2,40}?)\s*\(([+\-]\d+,\d+)%\)", bloco.group(1))
-        itens = [[p[0].strip().title(), br_num(p[1])] for p in pares]
-        altas = sorted([i for i in itens if i[1] > 0], key=lambda x: -x[1])[:5]
-        quedas = sorted([i for i in itens if i[1] < 0], key=lambda x: x[1])[:5]
+        def itens(tipo):
+            mm = re.search(r"principais " + tipo + r" ocorreram nos pre\w+ d[eo]s?\s+(.*?)\.\s", trecho, re.I | re.S)
+            if not mm:
+                return []
+            return [[n.strip(" e").strip().title(), br_num(v)] for n, v in re.findall(r"([^,()]+?)\s*\(([+\-−]?\d+,\d+)%\)", mm.group(1).replace("−", "-"))][:5]
+        altas, quedas = itens("altas"), itens("quedas")
         if altas or quedas:
             dest[k] = {"altas": altas, "quedas": quedas}
     return reg if len(reg) >= 4 else None, dest
@@ -279,34 +321,43 @@ def bloco_cepea(d):
 
 
 # ------------------------------------------------------------------ ANP (combustíveis e GLP)
-ANP_PAG = "https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-do-precos-de-combustiveis-ultimas-semanas-pesquisadas"
+ANP_PAG = "https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas"
 PROD = {"GASOLINA COMUM": "gasolina", "ETANOL HIDRATADO": "etanol", "OLEO DIESEL S10": "diesel_s10", "GLP": "glp"}
+
+
+def anp_aba(raw, chave):
+    """Lê a aba cujo nome contém `chave` (ESTADO/BRASIL) e acha a linha de cabeçalho."""
+    import pandas as pd
+    xls = pd.ExcelFile(io.BytesIO(raw))
+    abas = [a for a in xls.sheet_names if chave in sem_acento(a)] or xls.sheet_names
+    for aba in abas:
+        bruto = pd.read_excel(xls, sheet_name=aba, header=None)
+        for i in range(min(30, len(bruto))):
+            linha = [sem_acento(x) for x in bruto.iloc[i].tolist()]
+            if any("PRODUTO" in c for c in linha) and any("PRECO MEDIO" in c for c in linha):
+                df = bruto.iloc[i + 1:].copy()
+                df.columns = linha
+                return df
+    raise RuntimeError(f"aba {chave} não reconhecida na planilha da ANP")
+
+
+def anp_col(df, *partes):
+    return next(c for c in df.columns if all(p in c for p in partes))
 
 
 def bloco_combustiveis(d):
     import pandas as pd
     html = S.get(ANP_PAG, timeout=60).text
-    links = re.findall(r'href="([^"]+?\.xlsx)"', html)
-    est = [l for l in links if re.search(r"estad", l, re.I)] or links
-    if not est:
-        raise RuntimeError("planilha semanal por estado não encontrada na página da ANP")
-    url = est[0] if est[0].startswith("http") else "https://www.gov.br" + est[0]
-    raw = S.get(url, timeout=90).content
-    df = None
-    for skip in range(0, 20):
-        t = pd.read_excel(io.BytesIO(raw), skiprows=skip)
-        cols = [sem_acento(c) for c in t.columns]
-        if any("ESTADO" in c for c in cols) and any("PRODUTO" in c for c in cols):
-            t.columns = cols; df = t; break
-    if df is None:
-        raise RuntimeError("cabeçalho da planilha ANP não reconhecido")
-    c_est = next(c for c in df.columns if "ESTADO" in c)
-    c_prod = next(c for c in df.columns if "PRODUTO" in c)
-    c_preco = next(c for c in df.columns if "PRECO MEDIO" in c and "REVENDA" in c)
-    c_ini = next((c for c in df.columns if "DATA INICIAL" in c), None)
-    c_fim = next((c for c in df.columns if "DATA FINAL" in c), None)
-    if c_fim:
-        df = df[df[c_fim] == df[c_fim].max()]
+    links = re.findall(r'href="([^"]*resumo_semanal[^"]*\.xlsx)"', html, re.I)
+    if not links:
+        raise RuntimeError("planilha 'resumo_semanal' não encontrada na página da ANP")
+    abs_ = lambda u: u if u.startswith("http") else "https://www.gov.br" + u
+    raw = S.get(abs_(links[0]), timeout=120).content
+
+    df = anp_aba(raw, "ESTADO")
+    c_est, c_prod = anp_col(df, "ESTADO"), anp_col(df, "PRODUTO")
+    c_preco = anp_col(df, "PRECO MEDIO", "REVENDA")
+    c_ini, c_fim = anp_col(df, "DATA INICIAL"), anp_col(df, "DATA FINAL")
     estados = {}
     for _, r in df.iterrows():
         uf = nome_para_uf(r[c_est]); p = PROD.get(sem_acento(r[c_prod]))
@@ -314,22 +365,35 @@ def bloco_combustiveis(d):
             estados.setdefault(uf, {"uf": uf, "nome": UF[uf]})[p] = round(float(r[c_preco]), 2)
     if len(estados) < 20:
         raise RuntimeError(f"apenas {len(estados)} estados lidos")
-    c = d.setdefault("combustiveis", {})
     fmt = lambda x: pd.to_datetime(x).strftime("%d/%m/%Y")
-    semana = f"{fmt(df[c_ini].iloc[0])} a {fmt(df[c_fim].iloc[0])}" if c_ini and c_fim else c.get("semana")
+    semana = f"{fmt(df[c_ini].dropna().iloc[0])} a {fmt(df[c_fim].dropna().iloc[0])}"
+    c = d.setdefault("combustiveis", {})
     c["semana"] = c["semana_glp_estados"] = semana
     c["estados"] = sorted(estados.values(), key=lambda x: x["uf"])
-    # média Brasil ponderada simples pelos estados (a ANP publica a nacional na síntese semanal)
-    br = {"semana": semana}
-    for p in PROD.values():
-        vals = [e[p] for e in estados.values() if p in e]
-        br[p] = round(sum(vals) / len(vals), 2) if vals else None
-    br["glp_semana"] = semana
-    c["brasil"] = br
-    fim_iso = pd.to_datetime(df[c_fim].iloc[0]).date().isoformat() if c_fim else dt.date.today().isoformat()
-    hist = [h for h in c.get("hist_brasil", []) if h["semana"] != fim_iso]
-    hist.append({"semana": fim_iso, **{p: br[p] for p in PROD.values()}})
-    c["hist_brasil"] = sorted(hist, key=lambda h: h["semana"])[-52:]
+
+    # média Brasil das últimas semanas (aba BRASIL de cada planilha)
+    hist = {h["semana"]: h for h in c.get("hist_brasil", [])}
+    br_atual = None
+    for k, link in enumerate(links[:8]):
+        try:
+            rb = raw if k == 0 else S.get(abs_(link), timeout=120).content
+            b = anp_aba(rb, "BRASIL")
+            cp, cpr, cf = anp_col(b, "PRODUTO"), anp_col(b, "PRECO MEDIO", "REVENDA"), anp_col(b, "DATA FINAL")
+            reg = {}
+            for _, r in b.iterrows():
+                p = PROD.get(sem_acento(r[cp]))
+                if p and pd.notna(r[cpr]):
+                    reg[p] = round(float(r[cpr]), 2)
+            fim_iso = pd.to_datetime(b[cf].dropna().iloc[0]).date().isoformat()
+            hist[fim_iso] = {"semana": fim_iso, **reg}
+            if k == 0:
+                br_atual = reg
+        except Exception as e:
+            print("  ANP histórico:", link, e)
+    if not br_atual:
+        br_atual = {p: round(sum(e[p] for e in estados.values() if p in e) / max(1, sum(1 for e in estados.values() if p in e)), 2) for p in PROD.values()}
+    c["brasil"] = {"semana": semana, **br_atual, "glp_semana": semana}
+    c["hist_brasil"] = sorted(hist.values(), key=lambda h: h["semana"])[-52:]
 
 
 # ------------------------------------------------------------------ ANEEL
