@@ -1,0 +1,46 @@
+{
+ "mercado": {
+  "ok": false,
+  "em": "2026-11-13T07:39:54-03:00",
+  "erro": "HTTPError: 404 Client Error: Not Found for url: https://query1.finance.yahoo.com/v8/finance/chart/BTC-BRL?range=1y&interval=1d",
+  "ultimo_ok": null
+ },
+ "juros": {
+  "ok": false,
+  "em": "2026-11-13T07:39:54-03:00",
+  "erro": "HTTPError: 400 Client Error: Bad Request for url: https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados/ultimos/800?formato=json",
+  "ultimo_ok": null
+ },
+ "inflacao": {
+  "ok": false,
+  "em": "2026-11-13T07:39:54-03:00",
+  "erro": "HTTPError: 400 Client Error: Bad Request for url: https://api.bcb.gov.br/dados/serie/bcdata.sgs.433/dados/ultimos/40?formato=json",
+  "ultimo_ok": null
+ },
+ "ceagesp": {
+  "ok": true,
+  "em": "2026-11-13T07:39:54-03:00"
+ },
+ "cepea": {
+  "ok": true,
+  "em": "2026-11-13T07:39:54-03:00"
+ },
+ "combustiveis": {
+  "ok": false,
+  "em": "2026-11-13T07:39:54-03:00",
+  "erro": "RuntimeError: planilha semanal por estado não encontrada na página da ANP",
+  "ultimo_ok": null
+ },
+ "energia": {
+  "ok": false,
+  "em": "2026-11-13T07:39:54-03:00",
+  "erro": "ConnectTimeout: HTTPSConnectionPool(host='dadosabertos.aneel.gov.br', port=443): Max retries exceeded with url: /api/3/action/package_show?id=tarifas-distribuidoras-energia-eletrica (Caused by ConnectTimeoutError(<HTTPSConnection(host='dadosabertos.aneel.gov.br', port=443) at 0x7620c2a90320>, 'Connection to dadosabertos.aneel.gov.br timed out. (connect timeout=40)'))",
+  "ultimo_ok": null
+ },
+ "ibge": {
+  "ok": false,
+  "em": "2026-11-13T07:39:54-03:00",
+  "erro": "ConnectTimeout: HTTPSConnectionPool(host='servicodados.ibge.gov.br', port=443): Max retries exceeded with url: /api/v3/agregados/6579/periodos/-1/variaveis/9324?localidades=N3%5Ball%5D%7CN1%5Ball%5D (Caused by ConnectTimeoutError(<HTTPSConnection(host='servicodados.ibge.gov.br', port=443) at 0x7620c25d2360>, 'Connection to servicodados.ibge.gov.br timed out. (connect timeout=40)'))",
+  "ultimo_ok": null
+ }
+}
