@@ -281,6 +281,46 @@
     }).catch(function () {});
   }
 
+  /* Camada ao vivo: Selic e índices de preços direto do Banco Central (SGS) no navegador do visitante.
+     O BCB não responde bem a servidores fora do Brasil, mas responde a quem acessa daqui. */
+  function sgs(cod, diasAtras) {
+    var f = function (x) { return ("0" + x.getDate()).slice(-2) + "/" + ("0" + (x.getMonth() + 1)).slice(-2) + "/" + x.getFullYear(); };
+    var hoje = new Date(), ini = new Date(hoje.getTime() - diasAtras * 864e5);
+    return fetch("https://api.bcb.gov.br/dados/serie/bcdata.sgs." + cod + "/dados?formato=json&dataInicial=" + f(ini) + "&dataFinal=" + f(hoje))
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .then(function (j) { return j.map(function (x) { var p = x.data.split("/"); return { iso: p[2] + "-" + p[1] + "-" + p[0], v: parseFloat(x.valor) }; }); });
+  }
+  function acumula(vs) { return (vs.reduce(function (a, v) { return a * (1 + v / 100); }, 1) - 1) * 100; }
+  function bcbAoVivo(d) {
+    var hojeIso = new Date().toISOString().slice(0, 10);
+    var series = { ipca: 433, ipca15: 7478, inpc: 188, igpm: 189 };
+    var pedidos = Object.keys(series).map(function (k) { return sgs(series[k], 1200).then(function (s) { return [k, s]; }).catch(function () { return [k, null]; }); });
+    pedidos.push(sgs(432, 900).then(function (s) { return ["selic", s]; }).catch(function () { return ["selic", null]; }));
+    Promise.all(pedidos).then(function (res) {
+      var mudou = false;
+      res.forEach(function (r) {
+        var k = r[0], s = r[1]; if (!s || !s.length) return;
+        if (k === "selic") {
+          s = s.filter(function (x) { return x.iso <= hojeIso; }); if (!s.length) return;
+          var muds = [s[0]]; s.forEach(function (x) { if (x.v !== muds[muds.length - 1].v) muds.push(x); });
+          var sel = d.juros.selic; sel.atual = s[s.length - 1].v;
+          if (muds.length > 1) sel.anterior = muds[muds.length - 2].v;
+          sel.hist = muds.map(function (x) { return [x.iso, x.v]; }).concat([[s[s.length - 1].iso, s[s.length - 1].v]]);
+          mudou = true; return;
+        }
+        var it = (d.inflacao || []).find(function (i) { return i.id === k; }); if (!it) return;
+        var hist = s.map(function (x, n) { var h = { ref: x.iso.slice(0, 7), mes: x.v }; if (n >= 11) h.acum12 = +acumula(s.slice(n - 11, n + 1).map(function (y) { return y.v; })).toFixed(2); return h; });
+        var ult = hist[hist.length - 1], ano = ult.ref.slice(0, 4);
+        if (it.ref && ult.ref < it.ref) return; // nunca volta para um mês mais antigo
+        if (it.ref !== ult.ref) it.prox = null;
+        it.ref = ult.ref; it.mes = ult.mes; it.acum12 = ult.acum12;
+        it.acum_ano = +acumula(hist.filter(function (h) { return h.ref.slice(0, 4) === ano; }).map(function (h) { return h.mes; })).toFixed(2);
+        it.hist = hist.slice(-24); mudou = true;
+      });
+      if (mudou) { $("kpis-juros").innerHTML = ""; try { juros(d); } catch (e) { console.error(e); } avisarAltura(); }
+    });
+  }
+
   /* Incorporação: informa a altura da página ao site que a exibe num iframe */
   function avisarAltura() {
     if (window.parent === window) return;
@@ -296,6 +336,7 @@
     [mercado, juros, agro, energia, brasil].forEach(function (fn) { try { fn(d); } catch (e) { console.error(fn.name, e); } });
     fontes();
     aoVivo();
+    bcbAoVivo(d);
     if (window.parent !== window || /[?&]embed=1/.test(location.search)) document.documentElement.classList.add("embed");
     avisarAltura(); window.addEventListener("resize", avisarAltura); setInterval(avisarAltura, 1500);
   }

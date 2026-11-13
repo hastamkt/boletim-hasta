@@ -47,7 +47,10 @@ def get_json(url, tentativas=3, **kw):
     ultimo = None
     for t in range(tentativas):
         try:
-            r = S.get(url, timeout=(20, 90), **kw); r.raise_for_status(); return r.json()
+            r = S.get(url, timeout=(20, 90), **kw)
+            if r.status_code >= 500:
+                raise ConnectionError(f"{r.status_code} em {url}")
+            r.raise_for_status(); return r.json()
         except requests.HTTPError:
             raise
         except Exception as e:  # timeout / conexão: tenta de novo
@@ -172,7 +175,7 @@ def acumula(vals):
 
 
 def bloco_juros(d):
-    serie = sgs(432, 800, diaria=True)  # meta Selic diária
+    serie = [x for x in sgs(432, 800, diaria=True) if x[0] <= dt.date.today()]  # meta Selic (a série traz datas futuras até o próximo Copom)
     mudancas = [serie[0]]
     for dia, v in serie[1:]:
         if v != mudancas[-1][1]:
