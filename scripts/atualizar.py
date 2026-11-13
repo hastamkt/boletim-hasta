@@ -114,7 +114,13 @@ def bloco_mercado(d):
     anteriores = {a["id"]: a for a in d.get("mercado", {}).get("ativos", [])}
     for aid, (sym, nome, un) in YAHOO.items():
         pts = None
-        for fonte in (lambda: yahoo(sym), lambda: awesome_hist({"bitcoin": "BTC-BRL", "dolar": "USD-BRL", "euro": "EUR-BRL"}[aid])):
+        def btc_via_usd():
+            usd = next(a for a in ativos if a["id"] == "dolar")["valor"]
+            return [(dia, v * usd) for dia, v in yahoo("BTC-USD")]
+        fontes = [lambda: yahoo(sym), lambda: awesome_hist({"bitcoin": "BTC-BRL", "dolar": "USD-BRL", "euro": "EUR-BRL"}[aid])]
+        if aid == "bitcoin":
+            fontes.append(btc_via_usd)
+        for fonte in fontes:
             try:
                 pts = fonte()
                 if len(pts) >= 2:
@@ -138,6 +144,8 @@ def bloco_mercado(d):
     for a in ativos:
         a.setdefault("data", a["hist"][-1][0] if a.get("hist") else None)
     m = d.setdefault("mercado", {})
+    ibov = next((a for a in ativos if a["id"] == "ibovespa"), None)
+    data_ref = (ibov or {}).get("data") or data_ref  # data de referência = último pregão da B3
     m["ativos"], m["data"] = ativos, data_ref
     # maiores altas / quedas entre as ações do Ibovespa
     try:
