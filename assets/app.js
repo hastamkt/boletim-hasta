@@ -252,6 +252,75 @@
     ligarSeg($("sel-ibge"), desenhar); desenhar("pop");
   }
 
+  /* ---------------- Municípios (IBGE ao vivo, por estado) ---------------- */
+  var COD_UF = { RO: 11, AC: 12, AM: 13, RR: 14, PA: 15, AP: 16, TO: 17, MA: 21, PI: 22, CE: 23, RN: 24, PB: 25, PE: 26, AL: 27, SE: 28, BA: 29, MG: 31, ES: 32, RJ: 33, SP: 35, PR: 41, SC: 42, RS: 43, MS: 50, MT: 51, GO: 52, DF: 53 };
+  var NOME_UF = { AC: "Acre", AL: "Alagoas", AP: "Amapá", AM: "Amazonas", BA: "Bahia", CE: "Ceará", DF: "Distrito Federal", ES: "Espírito Santo", GO: "Goiás", MA: "Maranhão", MT: "Mato Grosso", MS: "Mato Grosso do Sul", MG: "Minas Gerais", PA: "Pará", PB: "Paraíba", PR: "Paraná", PE: "Pernambuco", PI: "Piauí", RJ: "Rio de Janeiro", RN: "Rio Grande do Norte", RS: "Rio Grande do Sul", RO: "Rondônia", RR: "Roraima", SC: "Santa Catarina", SP: "São Paulo", SE: "Sergipe", TO: "Tocantins" };
+  var cacheMun = {};
+  function ibgeSerie(agregado, variavel, periodo, uf) {
+    var url = "https://servicodados.ibge.gov.br/api/v3/agregados/" + agregado + "/periodos/" + periodo + "/variaveis/" + variavel + "?localidades=N6[N3[" + COD_UF[uf] + "]]";
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (j) {
+      var out = {}, ano = null;
+      j[0].resultados[0].series.forEach(function (s) { var k = Object.keys(s.serie); ano = k[k.length - 1]; var v = parseFloat(s.serie[ano]); out[s.localidade.id] = { nome: s.localidade.nome.replace(/ - [A-Z]{2}$/, ""), v: isNaN(v) ? null : v }; });
+      return { dados: out, ano: ano };
+    });
+  }
+  function carregarMunicipios(uf) {
+    if (cacheMun[uf]) return Promise.resolve(cacheMun[uf]);
+    return Promise.all([ibgeSerie(6579, 9324, "-1", uf), ibgeSerie(6579, 9324, "2024", uf).catch(function () { return null; }), ibgeSerie(5938, 37, "-1", uf)]).then(function (r) {
+      var pop = r[0], pop24 = r[1], pib = r[2], lista = [];
+      Object.keys(pop.dados).forEach(function (id) {
+        var p = pop.dados[id], b = pib.dados[id], base = pop24 && pop24.dados[id] ? pop24.dados[id].v : p.v;
+        var pibR = b && b.v != null ? b.v * 1000 : null;
+        lista.push({ nome: p.nome, pop: p.v, pib: pibR, pc: pibR && base ? pibR / base : null });
+      });
+      return (cacheMun[uf] = { lista: lista, anoPop: pop.ano, anoPib: pib.ano });
+    });
+  }
+  function municipios() {
+    var sel = $("mun-uf"), busca = $("mun-busca"), tab = $("t-mun"), st = $("mun-status"), res = $("mun-resumo");
+    if (!sel) return;
+    Object.keys(NOME_UF).sort(function (a, b) { return NOME_UF[a].localeCompare(NOME_UF[b]); }).forEach(function (uf) { var o = el("option"); o.value = uf; o.textContent = NOME_UF[uf]; sel.appendChild(o); });
+    var atual = null, ordem = { k: "pop", dir: -1 };
+    var cols = [["pos", "#"], ["nome", "Município"], ["pop", "Habitantes"], ["pib", "PIB (R$ mi)"], ["pc", "PIB per capita"]];
+    function desenhar() {
+      if (!atual) return;
+      var termo = busca.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      var lista = atual.lista.slice().sort(function (a, b) { var x = a[ordem.k], y = b[ordem.k]; if (ordem.k === "nome") return x.localeCompare(y) * ordem.dir; return ((x == null ? -Infinity : x) - (y == null ? -Infinity : y)) * ordem.dir; });
+      var rankPop = {}; atual.lista.slice().sort(function (a, b) { return b.pop - a.pop; }).forEach(function (m, i) { rankPop[m.nome] = i + 1; });
+      var h = "<thead><tr>" + cols.map(function (c) { return "<th data-k='" + c[0] + "'" + (c[0] !== "nome" && c[0] !== "pos" ? " style='text-align:right'" : "") + (ordem.k === c[0] ? " aria-sort='" + (ordem.dir > 0 ? "ascending" : "descending") + "'" : "") + ">" + c[1] + "</th>"; }).join("") + "</tr></thead><tbody>";
+      var n = 0;
+      lista.forEach(function (m) {
+        if (termo && m.nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(termo) < 0) return;
+        n++;
+        h += "<tr><td class='pos'>" + rankPop[m.nome] + "º</td><td><b>" + m.nome + "</b></td><td class='num'>" + num(m.pop, 0) + "</td><td class='num'>" + (m.pib != null ? num(m.pib / 1e6, 1) : "–") + "</td><td class='num'>" + (m.pc != null ? "R$ " + num(m.pc, 0) : "–") + "</td></tr>";
+      });
+      tab.innerHTML = h + "</tbody>";
+      st.textContent = n + " de " + atual.lista.length + " municípios · " + NOME_UF[sel.value] + " · população " + atual.anoPop + ", PIB " + atual.anoPib + " · # = posição em habitantes no estado";
+      Array.prototype.forEach.call(tab.querySelectorAll("th[data-k]"), function (th) {
+        var k = th.dataset.k; if (k === "pos") k = "pop";
+        th.onclick = function () { ordem = { k: k, dir: ordem.k === k ? -ordem.dir : (k === "nome" ? 1 : -1) }; desenhar(); };
+      });
+      avisarAltura();
+    }
+    function resumo() {
+      var l = atual.lista, totPop = l.reduce(function (a, m) { return a + (m.pop || 0); }, 0), totPib = l.reduce(function (a, m) { return a + (m.pib || 0); }, 0);
+      var comPc = l.filter(function (m) { return m.pc != null; }).sort(function (a, b) { return b.pc - a.pc; });
+      var maior = l.slice().sort(function (a, b) { return b.pop - a.pop; })[0];
+      res.innerHTML = "";
+      res.appendChild(kpi({ nome: "Municípios", valor: num(l.length, 0), neutro: true }));
+      res.appendChild(kpi({ nome: "Habitantes " + atual.anoPop, valor: compacto(totPop), neutro: true, sub: "Maior: " + maior.nome + " (" + compacto(maior.pop) + ")" }));
+      if (comPc.length) res.appendChild(kpi({ nome: "Maior PIB per capita", valor: "R$ " + compacto(comPc[0].pc), neutro: true, sub: comPc[0].nome }));
+      if (comPc.length) res.appendChild(kpi({ nome: "Menor PIB per capita", valor: "R$ " + compacto(comPc[comPc.length - 1].pc), neutro: true, sub: comPc[comPc.length - 1].nome }));
+    }
+    sel.addEventListener("change", function () {
+      var uf = sel.value; if (!uf) return;
+      st.textContent = "Carregando municípios de " + NOME_UF[uf] + " no IBGE…"; tab.innerHTML = ""; res.innerHTML = ""; busca.disabled = true;
+      carregarMunicipios(uf).then(function (d) { if (sel.value !== uf) return; atual = d; busca.disabled = false; busca.value = ""; resumo(); desenhar(); })
+        .catch(function () { st.textContent = "O IBGE não respondeu agora. Tente de novo em instantes."; });
+    });
+    busca.addEventListener("input", desenhar);
+  }
+
   function fontes() {
     var f = [
       ["IBGE — Estimativas da População, Contas Regionais, IPCA/INPC/IPCA-15", "https://www.ibge.gov.br"],
@@ -335,6 +404,7 @@
     if (window.Chart) { Chart.defaults.font.family = "Montserrat"; Chart.defaults.color = TXT2; }
     [mercado, juros, agro, energia, brasil].forEach(function (fn) { try { fn(d); } catch (e) { console.error(fn.name, e); } });
     fontes();
+    try { municipios(); } catch (e) { console.error(e); }
     aoVivo();
     bcbAoVivo(d);
     if (window.parent !== window || /[?&]embed=1/.test(location.search)) document.documentElement.classList.add("embed");
@@ -343,7 +413,15 @@
 
   /* ---------------- Cadastro (nome, telefone, e-mail) ---------------- */
   var CHAVE = "boletimHastaCadastro";
-  function jaCadastrado() { try { return !!localStorage.getItem(CHAVE); } catch (e) { return false; } }
+  function jaCadastrado() {
+    try { if (localStorage.getItem(CHAVE)) return true; } catch (e) {}
+    return document.cookie.split("; ").some(function (c) { return c.indexOf(CHAVE + "=") === 0; });
+  }
+  function lembrar() {
+    var agora = new Date().toISOString();
+    try { localStorage.setItem(CHAVE, agora); } catch (e) {}
+    try { document.cookie = CHAVE + "=" + encodeURIComponent(agora) + "; max-age=" + (60 * 60 * 24 * 730) + "; path=/; SameSite=Lax" + (location.protocol === "https:" ? "; Secure" : ""); } catch (e) {}
+  }
   function mascaraTel(v) {
     v = v.replace(/\D/g, "").slice(0, 11);
     if (v.length > 10) return "(" + v.slice(0, 2) + ") " + v.slice(2, 7) + "-" + v.slice(7);
@@ -373,10 +451,21 @@
         btn.disabled = false; btn.textContent = "Acessar o boletim";
         erro.textContent = "Não foi possível enviar agora. Verifique sua conexão e tente de novo.";
       });
-      function liberar() {
-        try { localStorage.setItem(CHAVE, new Date().toISOString()); } catch (e) {}
-        modal.hidden = true; document.documentElement.classList.remove("bloqueado"); avisarAltura();
-      }
+      function liberar() { lembrar(); modal.hidden = true; document.documentElement.classList.remove("bloqueado"); avisarAltura(); }
+    });
+    // "Já me cadastrei": confere o e-mail na planilha e libera sem pedir os dados de novo
+    var volta = $("cad-volta"), vErro = $("cad-volta-erro"), vBtn = $("cad-volta-btn");
+    $("cad-ja").onclick = function () { f.hidden = true; volta.hidden = false; volta.email.value = f.email.value; setTimeout(function () { volta.email.focus(); }, 30); };
+    $("cad-novo").onclick = function () { volta.hidden = true; f.hidden = false; };
+    volta.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var email = volta.email.value.trim().toLowerCase(), url = (window.BOLETIM_CONFIG || {}).cadastroUrl;
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { vErro.textContent = "Informe um e-mail válido."; return; }
+      vErro.textContent = ""; vBtn.disabled = true; vBtn.textContent = "Verificando…";
+      fetch(url + "?acao=verificar&email=" + encodeURIComponent(email)).then(function (r) { return r.json(); }).then(function (j) {
+        if (j && j.cadastrado) { lembrar(); modal.hidden = true; document.documentElement.classList.remove("bloqueado"); avisarAltura(); }
+        else { vErro.textContent = "Não encontramos esse e-mail. Faça o cadastro rapidinho."; vBtn.disabled = false; vBtn.textContent = "Entrar"; }
+      }).catch(function () { vErro.textContent = "Não foi possível verificar agora. Tente de novo."; vBtn.disabled = false; vBtn.textContent = "Entrar"; });
     });
   }
 

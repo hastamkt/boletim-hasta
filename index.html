@@ -95,6 +95,18 @@
       <div id="rank-ibge" class="ranking"></div>
       <p class="nota" id="nota-ibge"></p>
     </div>
+    <div class="cartao" id="municipios">
+      <div class="cartao-cab"><h3>Municípios: habitantes e PIB per capita</h3>
+        <div class="controles mun-ctrl">
+          <select id="mun-uf" aria-label="Estado"><option value="">Escolha um estado</option></select>
+          <input id="mun-busca" type="search" placeholder="Buscar município" aria-label="Buscar município" disabled>
+        </div>
+      </div>
+      <p class="sub" id="mun-status">Selecione um estado para ver todos os municípios, com dados direto do IBGE.</p>
+      <div class="mun-resumo" id="mun-resumo"></div>
+      <div class="tabela-wrap mun-tabela"><table class="tabela" id="t-mun"></table></div>
+      <p class="nota">População: Estimativas da População (IBGE, mais recente). PIB municipal: Contas Regionais/PIB dos Municípios (IBGE, 2023). PIB per capita calculado pela Hasta: PIB 2023 ÷ população estimada de 2024, ano mais próximo publicado.</p>
+    </div>
   </section>
 
   <section class="secao fontes">
@@ -124,7 +136,17 @@
     <label class="cad-check"><input type="checkbox" name="aceite" required> <span>Autorizo a Hasta a guardar meus dados para me enviar o boletim e conteúdos relacionados. Posso pedir a exclusão a qualquer momento.</span></label>
     <p class="cad-erro" id="cad-erro" role="alert"></p>
     <button type="submit" id="cad-btn">Acessar o boletim</button>
+    <button type="button" class="cad-link" id="cad-ja">Já me cadastrei</button>
     <p class="cad-lgpd">Seus dados ficam com a Hasta, não são vendidos nem compartilhados e são tratados conforme a LGPD. Para corrigir ou excluir, escreva para <a href="mailto:contato@hastamarketing.com">contato@hastamarketing.com</a>.</p>
+  </form>
+  <form id="cad-volta" class="cad-caixa" novalidate hidden>
+    <img src="assets/logo-hasta.png" alt="hasta.mkt" class="cad-logo" width="132" height="37">
+    <h2>Bem-vindo de volta</h2>
+    <p class="cad-sub">Informe o e-mail que você usou no cadastro.</p>
+    <label>E-mail<input name="email" type="email" autocomplete="email" required maxlength="160"></label>
+    <p class="cad-erro" id="cad-volta-erro" role="alert"></p>
+    <button type="submit" id="cad-volta-btn">Entrar</button>
+    <button type="button" class="cad-link" id="cad-novo">Ainda não tenho cadastro</button>
   </form>
 </div>
 <script>

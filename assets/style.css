@@ -159,3 +159,20 @@ a { color: var(--roxo); }
 #cad-btn:hover { background: #3c1250; }
 #cad-btn:disabled { opacity: .6; cursor: wait; }
 .cad-lgpd { font-size: 11.5px; color: var(--texto-3); margin: 2px 0 0; }
+
+.cad-link { background: none; border: 0; color: var(--roxo); font: 600 13px var(--f-cab); text-decoration: underline; cursor: pointer; padding: 2px; }
+/* municípios */
+.mun-ctrl select, .mun-ctrl input { font: 13.5px var(--f-corpo); padding: 8px 12px; border: 1.5px solid #d9d9d9; border-radius: 999px; background: #fff; }
+.mun-ctrl input { min-width: 200px; }
+.mun-ctrl select:focus, .mun-ctrl input:focus { outline: none; border-color: var(--roxo); }
+.mun-tabela { max-height: 520px; overflow: auto; padding: 0; border-top: 1px solid var(--linha); }
+.mun-tabela thead th { position: sticky; top: 0; background: #fff; cursor: pointer; user-select: none; white-space: nowrap; }
+.mun-tabela thead th[aria-sort]::after { content: " ▾"; color: var(--ouro); }
+.mun-tabela thead th[aria-sort="ascending"]::after { content: " ▴"; }
+.mun-tabela td.pos { color: var(--texto-3); font-size: 12px; width: 44px; }
+.mun-resumo { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; margin-bottom: 12px; }
+.mun-resumo .kpi { min-height: 0; }
+.mun-resumo .kpi-valor { font-size: 20px; }
+@media (max-width: 760px) { .mun-ctrl input { min-width: 0; width: 100%; } .mun-ctrl { width: 100%; } .mun-ctrl select { flex: 1; } }
+
+.cad-caixa[hidden] { display: none !important; }
