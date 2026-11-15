@@ -1,38 +1,38 @@
 {
  "mercado": {
   "ok": true,
-  "em": "2026-11-14T14:05:42-03:00"
+  "em": "2026-11-15T14:42:19-03:00"
  },
  "juros": {
   "ok": true,
-  "em": "2026-11-14T14:05:42-03:00"
+  "em": "2026-11-15T14:42:19-03:00"
  },
  "inflacao": {
   "ok": true,
-  "em": "2026-11-14T14:05:42-03:00"
+  "em": "2026-11-15T14:42:19-03:00"
  },
  "ceagesp": {
   "ok": true,
-  "em": "2026-11-14T14:05:42-03:00"
+  "em": "2026-11-15T14:42:19-03:00"
  },
  "cepea": {
   "ok": true,
-  "em": "2026-11-14T14:05:42-03:00"
+  "em": "2026-11-15T14:42:19-03:00"
  },
  "combustiveis": {
   "ok": true,
-  "em": "2026-11-14T14:05:42-03:00"
+  "em": "2026-11-15T14:42:19-03:00"
  },
  "energia": {
   "ok": false,
-  "em": "2026-11-14T14:05:42-03:00",
-  "erro": "ConnectTimeout: HTTPSConnectionPool(host='dadosabertos.aneel.gov.br', port=443): Max retries exceeded with url: /api/3/action/package_show?id=tarifas-distribuidoras-energia-eletrica (Caused by ConnectTimeoutError(<HTTPSConnection(host='dadosabertos.aneel.gov.br', port=443) at 0x7fe6977301d0>, 'Connection to dadosabertos.aneel.gov.br timed out. (connect timeout=20)'))",
-  "ultimo_ok": "2026-11-13T22:45:11-03:00"
+  "em": "2026-11-15T14:42:19-03:00",
+  "erro": "ConnectTimeout: HTTPSConnectionPool(host='dadosabertos.aneel.gov.br', port=443): Max retries exceeded with url: /api/3/action/package_show?id=tarifas-distribuidoras-energia-eletrica (Caused by ConnectTimeoutError(<HTTPSConnection(host='dadosabertos.aneel.gov.br', port=443) at 0x71dc866e4830>, 'Connection to dadosabertos.aneel.gov.br timed out. (connect timeout=20)'))",
+  "ultimo_ok": "2026-11-14T14:05:42-03:00"
  },
  "ibge": {
   "ok": false,
-  "em": "2026-11-14T14:05:42-03:00",
-  "erro": "ConnectTimeout: HTTPSConnectionPool(host='servicodados.ibge.gov.br', port=443): Max retries exceeded with url: /api/v3/agregados/6579/periodos/-1/variaveis/9324?localidades=N3%5Ball%5D%7CN1%5Ball%5D (Caused by ConnectTimeoutError(<HTTPSConnection(host='servicodados.ibge.gov.br', port=443) at 0x7fe698446270>, 'Connection to servicodados.ibge.gov.br timed out. (connect timeout=20)'))",
-  "ultimo_ok": "2026-11-13T22:45:11-03:00"
+  "em": "2026-11-15T14:42:19-03:00",
+  "erro": "ConnectTimeout: HTTPSConnectionPool(host='servicodados.ibge.gov.br', port=443): Max retries exceeded with url: /api/v3/agregados/6579/periodos/-1/variaveis/9324?localidades=N3%5Ball%5D%7CN1%5Ball%5D (Caused by ConnectTimeoutError(<HTTPSConnection(host='servicodados.ibge.gov.br', port=443) at 0x71dc87436360>, 'Connection to servicodados.ibge.gov.br timed out. (connect timeout=20)'))",
+  "ultimo_ok": "2026-11-14T14:05:42-03:00"
  }
 }
