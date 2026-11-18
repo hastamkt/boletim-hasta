@@ -108,9 +108,22 @@
       var card = kpi({ nome: a.nome, valor: valor, variacao: a.var_dia == null ? "último fechamento" : seta(a.var_dia) + pct(a.var_dia) + " no dia", sub: sub.join(" · "), spark: (a.hist || []).filter(function (p) { return p[1] != null; }) });
       card.dataset.ativo = a.id; box.appendChild(card);
     });
-    $("ref-altas").textContent = $("ref-baixas").textContent = "Pregão de " + dataBR(m.data) + " · ações do índice";
-    listaVar($("altas"), m.maiores_altas.map(function (x) { return [x.ticker + (x.nome ? " · " + x.nome : ""), x.var]; }));
-    listaVar($("baixas"), m.maiores_baixas.map(function (x) { return [x.ticker + (x.nome ? " · " + x.nome : ""), x.var]; }));
+    var rank = m.ranking || {};
+    if (!rank.dia && m.maiores_altas) rank.dia = { altas: m.maiores_altas, baixas: m.maiores_baixas };
+    var NOMES = { dia: "no dia", "30d": "em 30 dias", "6m": "em 6 meses", "12m": "em 12 meses" };
+    function rotulo(x) { return [x.ticker + (x.nome ? " · " + x.nome : ""), x.var]; }
+    function mostrarRank(k) {
+      var r = rank[k];
+      if (!r) { $("altas").innerHTML = $("baixas").innerHTML = "<p class='sub'>Ranking deste período disponível na próxima atualização.</p>"; $("ref-altas").textContent = $("ref-baixas").textContent = ""; return; }
+      var ref = k === "dia" ? "Pregão de " + dataBR(m.data) : "Variação " + NOMES[k] + (r.desde ? ": " + dataBR(r.desde) + " → " + dataBR(m.data) : " até " + dataBR(m.data));
+      $("ref-altas").textContent = $("ref-baixas").textContent = ref + " · ações do índice";
+      listaVar($("altas"), r.altas.map(rotulo));
+      listaVar($("baixas"), r.baixas.map(rotulo));
+      avisarAltura();
+    }
+    mostrarRank("dia");
+    var segR = $("sel-rank");
+    if (segR) ligarSeg(segR, mostrarRank);
   }
 
   /* ---------------- Juros e inflação ---------------- */

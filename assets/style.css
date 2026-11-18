@@ -176,3 +176,6 @@ a { color: var(--roxo); }
 @media (max-width: 760px) { .mun-ctrl input { min-width: 0; width: 100%; } .mun-ctrl { width: 100%; } .mun-ctrl select { flex: 1; } }
 
 .cad-caixa[hidden] { display: none !important; }
+
+.filtro-rank { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 22px 0 12px; }
+.filtro-rank span { font: 600 14px var(--f-cab); color: var(--texto-2); }

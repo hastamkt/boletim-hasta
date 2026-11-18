@@ -147,20 +147,38 @@ def bloco_mercado(d):
     ibov = next((a for a in ativos if a["id"] == "ibovespa"), None)
     data_ref = (ibov or {}).get("data") or data_ref  # data de referência = último pregão da B3
     m["ativos"], m["data"] = ativos, data_ref
-    # maiores altas / quedas entre as ações do Ibovespa
+    # maiores altas / quedas entre as ações do Ibovespa, por período (dia, 30 dias, 6 meses, 12 meses)
     try:
-        movs = []
+        ref = dt.date.fromisoformat(data_ref)
+        alvos = {"30d": ref - dt.timedelta(days=30), "6m": ref - dt.timedelta(days=182), "12m": ref - dt.timedelta(days=365)}
+        movs = {k: [] for k in ("dia", "30d", "6m", "12m")}
+        bases = {}
         for cod, nome in ibov_composicao():
             try:
-                p = yahoo(cod + ".SA", rng="5d")
-                if len(p) >= 2 and p[-1][0] == data_ref:
-                    movs.append({"ticker": cod, "nome": nome, "var": round((p[-1][1] / p[-2][1] - 1) * 100, 2)})
+                p = yahoo(cod + ".SA", rng="13mo")
             except Exception:
                 continue
-        if len(movs) >= 20:
-            movs.sort(key=lambda x: x["var"])
-            m["maiores_altas"] = list(reversed(movs[-5:]))
-            m["maiores_baixas"] = movs[:5]
+            if len(p) < 2 or p[-1][0] != data_ref:
+                continue
+            ult = p[-1][1]
+            movs["dia"].append({"ticker": cod, "nome": nome, "var": round((ult / p[-2][1] - 1) * 100, 2)})
+            for k, alvo in alvos.items():
+                ant = [x for x in p if x[0] <= alvo.isoformat()]
+                # exige um fechamento até 7 dias antes da data-alvo (ações recém-listadas ficam de fora)
+                if ant and (alvo - dt.date.fromisoformat(ant[-1][0])).days <= 7 and ant[-1][1]:
+                    movs[k].append({"ticker": cod, "nome": nome, "var": round((ult / ant[-1][1] - 1) * 100, 2)})
+                    bases[k] = max(bases.get(k, ""), ant[-1][0])
+        ranking = {}
+        for k, lst in movs.items():
+            if len(lst) >= 20:
+                lst.sort(key=lambda x: x["var"])
+                ranking[k] = {"altas": list(reversed(lst[-5:])), "baixas": lst[:5], "n": len(lst)}
+                if k in bases:
+                    ranking[k]["desde"] = bases[k]
+        if "dia" in ranking:
+            m["maiores_altas"], m["maiores_baixas"] = ranking["dia"]["altas"], ranking["dia"]["baixas"]
+        if ranking:
+            m["ranking"] = {**m.get("ranking", {}), **ranking}
     except Exception as e:
         print("  altas/quedas: mantendo anteriores →", e)
 
