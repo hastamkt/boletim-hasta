@@ -1,5 +1,5 @@
 {
- "atualizado_em": "2026-11-18T19:34:04-03:00",
+ "atualizado_em": "2026-11-18T19:44:34-03:00",
  "modo": "automatico",
  "mercado": {
   "data": "2026-11-18",
@@ -3119,11 +3119,11 @@
     "id": "bitcoin",
     "nome": "Bitcoin",
     "unidade": "R$",
-    "valor": 365518.5399,
-    "var_dia": -3.7,
-    "var_mes": -20.13,
-    "var_ano": -29.57,
-    "var_12m": -32.76,
+    "valor": 364986.5275,
+    "var_dia": -3.84,
+    "var_mes": -20.25,
+    "var_ano": -29.67,
+    "var_12m": -32.86,
     "data": "2026-11-17",
     "hist": [
      [
@@ -4164,7 +4164,7 @@
      ],
      [
       "2026-11-17",
-      365518.5399
+      364986.5275
      ]
     ]
    },
@@ -6264,7 +6264,240 @@
     "nome": "Vamos",
     "var": -3.72
    }
-  ]
+  ],
+  "ranking": {
+   "dia": {
+    "altas": [
+     {
+      "ticker": "CMIN3",
+      "nome": "Csnmineracao",
+      "var": 6.74
+     },
+     {
+      "ticker": "BEEF3",
+      "nome": "Minerva",
+      "var": 6.3
+     },
+     {
+      "ticker": "MGLU3",
+      "nome": "Magaz Luiza",
+      "var": 4.65
+     },
+     {
+      "ticker": "MBRF3",
+      "nome": "Marfrig",
+      "var": 4.06
+     },
+     {
+      "ticker": "HAPV3",
+      "nome": "Hapvida",
+      "var": 3.92
+     }
+    ],
+    "baixas": [
+     {
+      "ticker": "MRVE3",
+      "nome": "Mrv",
+      "var": -4.79
+     },
+     {
+      "ticker": "TEND3",
+      "nome": "Tenda",
+      "var": -4.74
+     },
+     {
+      "ticker": "BRAV3",
+      "nome": "Brava",
+      "var": -4.01
+     },
+     {
+      "ticker": "CURY3",
+      "nome": "Cury S/A",
+      "var": -3.84
+     },
+     {
+      "ticker": "VAMO3",
+      "nome": "Vamos",
+      "var": -3.72
+     }
+    ],
+    "n": 76
+   },
+   "30d": {
+    "altas": [
+     {
+      "ticker": "SUZB3",
+      "nome": "Suzano S.A.",
+      "var": 29.79
+     },
+     {
+      "ticker": "EMBJ3",
+      "nome": "Embraer",
+      "var": 18.82
+     },
+     {
+      "ticker": "TIMS3",
+      "nome": "Tim",
+      "var": 18.27
+     },
+     {
+      "ticker": "VIVT3",
+      "nome": "Telef Brasil",
+      "var": 11.68
+     },
+     {
+      "ticker": "WEGE3",
+      "nome": "Weg",
+      "var": 7.78
+     }
+    ],
+    "baixas": [
+     {
+      "ticker": "VAMO3",
+      "nome": "Vamos",
+      "var": -57.75
+     },
+     {
+      "ticker": "COGN3",
+      "nome": "Cogna On",
+      "var": -49.04
+     },
+     {
+      "ticker": "TEND3",
+      "nome": "Tenda",
+      "var": -45.63
+     },
+     {
+      "ticker": "RENT3",
+      "nome": "Localiza",
+      "var": -41.91
+     },
+     {
+      "ticker": "CEAB3",
+      "nome": "Cea Modas",
+      "var": -41.59
+     }
+    ],
+    "n": 76,
+    "desde": "2026-10-19"
+   },
+   "6m": {
+    "altas": [
+     {
+      "ticker": "EMBJ3",
+      "nome": "Embraer",
+      "var": 56.0
+     },
+     {
+      "ticker": "FLRY3",
+      "nome": "Fleury",
+      "var": 32.78
+     },
+     {
+      "ticker": "SUZB3",
+      "nome": "Suzano S.A.",
+      "var": 31.75
+     },
+     {
+      "ticker": "MGLU3",
+      "nome": "Magaz Luiza",
+      "var": 23.63
+     },
+     {
+      "ticker": "WEGE3",
+      "nome": "Weg",
+      "var": 20.67
+     }
+    ],
+    "baixas": [
+     {
+      "ticker": "NATU3",
+      "nome": "Natura",
+      "var": -52.2
+     },
+     {
+      "ticker": "HAPV3",
+      "nome": "Hapvida",
+      "var": -52.07
+     },
+     {
+      "ticker": "TEND3",
+      "nome": "Tenda",
+      "var": -51.64
+     },
+     {
+      "ticker": "USIM5",
+      "nome": "Usiminas",
+      "var": -47.87
+     },
+     {
+      "ticker": "CSNA3",
+      "nome": "Sid Nacional",
+      "var": -40.46
+     }
+    ],
+    "n": 76,
+    "desde": "2026-05-20"
+   },
+   "12m": {
+    "altas": [
+     {
+      "ticker": "PRIO3",
+      "nome": "Prio",
+      "var": 54.52
+     },
+     {
+      "ticker": "CSMG3",
+      "nome": "Copasa",
+      "var": 45.75
+     },
+     {
+      "ticker": "PETR3",
+      "nome": "Petrobras",
+      "var": 41.06
+     },
+     {
+      "ticker": "UGPA3",
+      "nome": "Ultrapar",
+      "var": 40.69
+     },
+     {
+      "ticker": "GOAU4",
+      "nome": "Gerdau Met",
+      "var": 40.18
+     }
+    ],
+    "baixas": [
+     {
+      "ticker": "HAPV3",
+      "nome": "Hapvida",
+      "var": -62.59
+     },
+     {
+      "ticker": "CSNA3",
+      "nome": "Sid Nacional",
+      "var": -55.21
+     },
+     {
+      "ticker": "CEAB3",
+      "nome": "Cea Modas",
+      "var": -54.05
+     },
+     {
+      "ticker": "COGN3",
+      "nome": "Cogna On",
+      "var": -53.19
+     },
+     {
+      "ticker": "DIRR3",
+      "nome": "Direcional",
+      "var": -52.02
+     }
+    ],
+    "n": 76,
+    "desde": "2025-11-18"
+   }
+  }
  },
  "juros": {
   "selic": {
