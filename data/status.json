@@ -1,38 +1,38 @@
 {
  "mercado": {
   "ok": true,
-  "em": "2026-11-18T00:08:32-03:00"
+  "em": "2026-11-18T16:24:29-03:00"
  },
  "juros": {
   "ok": true,
-  "em": "2026-11-18T00:08:32-03:00"
+  "em": "2026-11-18T16:24:29-03:00"
  },
  "inflacao": {
   "ok": true,
-  "em": "2026-11-18T00:08:32-03:00"
+  "em": "2026-11-18T16:24:29-03:00"
  },
  "ceagesp": {
   "ok": true,
-  "em": "2026-11-18T00:08:32-03:00"
+  "em": "2026-11-18T16:24:29-03:00"
  },
  "cepea": {
   "ok": true,
-  "em": "2026-11-18T00:08:32-03:00"
+  "em": "2026-11-18T16:24:29-03:00"
  },
  "combustiveis": {
   "ok": true,
-  "em": "2026-11-18T00:08:32-03:00"
+  "em": "2026-11-18T16:24:29-03:00"
  },
  "energia": {
   "ok": false,
-  "em": "2026-11-18T00:08:32-03:00",
-  "erro": "ConnectTimeout: HTTPSConnectionPool(host='dadosabertos.aneel.gov.br', port=443): Max retries exceeded with url: /api/3/action/package_show?id=tarifas-distribuidoras-energia-eletrica (Caused by ConnectTimeoutError(<HTTPSConnection(host='dadosabertos.aneel.gov.br', port=443) at 0x71c5587085f0>, 'Connection to dadosabertos.aneel.gov.br timed out. (connect timeout=20)'))",
-  "ultimo_ok": "2026-11-17T19:51:00-03:00"
+  "em": "2026-11-18T16:24:29-03:00",
+  "erro": "ConnectTimeout: HTTPSConnectionPool(host='dadosabertos.aneel.gov.br', port=443): Max retries exceeded with url: /api/3/action/package_show?id=tarifas-distribuidoras-energia-eletrica (Caused by ConnectTimeoutError(<HTTPSConnection(host='dadosabertos.aneel.gov.br', port=443) at 0x75615a108ad0>, 'Connection to dadosabertos.aneel.gov.br timed out. (connect timeout=20)'))",
+  "ultimo_ok": "2026-11-18T00:08:32-03:00"
  },
  "ibge": {
   "ok": false,
-  "em": "2026-11-18T00:08:32-03:00",
+  "em": "2026-11-18T16:24:29-03:00",
   "erro": "IndexError: list index out of range",
-  "ultimo_ok": "2026-11-17T19:51:00-03:00"
+  "ultimo_ok": "2026-11-18T00:08:32-03:00"
  }
 }
