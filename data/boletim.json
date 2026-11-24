@@ -1,5 +1,5 @@
 {
- "atualizado_em": "2026-11-23T23:08:15-03:00",
+ "atualizado_em": "2026-11-24T02:30:07-03:00",
  "modo": "automatico",
  "mercado": {
   "data": "2026-11-23",
@@ -8,7 +8,7 @@
     "id": "ibovespa",
     "nome": "Ibovespa",
     "unidade": "pts",
-    "valor": 164796.0469,
+    "valor": 164796.0,
     "var_dia": -0.95,
     "var_mes": -1.86,
     "var_ano": 2.28,
@@ -1001,7 +1001,7 @@
      ],
      [
       "2026-11-23",
-      164796.0469
+      164796.0
      ]
     ]
    },
@@ -2062,11 +2062,11 @@
     "id": "euro",
     "nome": "Euro comercial",
     "unidade": "R$",
-    "valor": 6.4714,
-    "var_dia": -0.79,
-    "var_mes": 7.51,
-    "var_ano": 0.69,
-    "var_12m": 5.87,
+    "valor": 6.4675,
+    "var_dia": -0.85,
+    "var_mes": 7.45,
+    "var_ano": 0.63,
+    "var_12m": 5.81,
     "data": "2026-11-23",
     "hist": [
      [
@@ -3107,7 +3107,7 @@
      ],
      [
       "2026-11-23",
-      6.4714
+      6.4675
      ]
     ]
    },
@@ -3115,11 +3115,11 @@
     "id": "bitcoin",
     "nome": "Bitcoin",
     "unidade": "R$",
-    "valor": 361250.7321,
-    "var_dia": -0.39,
-    "var_mes": -22.14,
-    "var_ano": -31.34,
-    "var_12m": -30.98,
+    "valor": 359160.0517,
+    "var_dia": -0.96,
+    "var_mes": -22.59,
+    "var_ano": -31.73,
+    "var_12m": -31.38,
     "data": "2026-11-23",
     "hist": [
      [
@@ -4160,7 +4160,7 @@
      ],
      [
       "2026-11-23",
-      361250.7321
+      359160.0517
      ]
     ]
    },
@@ -4168,12 +4168,12 @@
     "id": "brent",
     "nome": "Petróleo Brent",
     "unidade": "US$",
-    "valor": 86.41,
-    "var_dia": -3.31,
-    "var_mes": -26.55,
-    "var_ano": 42.0,
-    "var_12m": 36.36,
-    "data": "2026-11-23",
+    "valor": 85.96,
+    "var_dia": -3.82,
+    "var_mes": -26.93,
+    "var_ano": 41.27,
+    "var_12m": 35.65,
+    "data": "2026-11-24",
     "hist": [
      [
       "2025-11-24",
@@ -5180,8 +5180,8 @@
       89.37
      ],
      [
-      "2026-11-23",
-      86.41
+      "2026-11-24",
+      85.96
      ]
     ]
    },
@@ -5189,12 +5189,12 @@
     "id": "wti",
     "nome": "Petróleo WTI",
     "unidade": "US$",
-    "valor": 79.99,
-    "var_dia": -0.22,
-    "var_mes": -23.18,
-    "var_ano": 39.31,
-    "var_12m": 35.94,
-    "data": "2026-11-23",
+    "valor": 79.41,
+    "var_dia": -0.95,
+    "var_mes": -23.73,
+    "var_ano": 38.3,
+    "var_12m": 34.96,
+    "data": "2026-11-24",
     "hist": [
      [
       "2025-11-24",
@@ -6201,8 +6201,8 @@
       80.17
      ],
      [
-      "2026-11-23",
-      79.99
+      "2026-11-24",
+      79.41
      ]
     ]
    }
@@ -6236,11 +6236,6 @@
   ],
   "maiores_baixas": [
    {
-    "ticker": "HAPV3",
-    "nome": "Hapvida",
-    "var": -5.84
-   },
-   {
     "ticker": "PETR3",
     "nome": "Petrobras",
     "var": -3.31
@@ -6259,6 +6254,11 @@
     "ticker": "PETR4",
     "nome": "Petrobras",
     "var": -3.21
+   },
+   {
+    "ticker": "EMBJ3",
+    "nome": "Embraer",
+    "var": -2.9
    }
   ],
   "ranking": {
@@ -6292,11 +6292,6 @@
     ],
     "baixas": [
      {
-      "ticker": "HAPV3",
-      "nome": "Hapvida",
-      "var": -5.84
-     },
-     {
       "ticker": "PETR3",
       "nome": "Petrobras",
       "var": -3.31
@@ -6315,9 +6310,14 @@
       "ticker": "PETR4",
       "nome": "Petrobras",
       "var": -3.21
+     },
+     {
+      "ticker": "EMBJ3",
+      "nome": "Embraer",
+      "var": -2.9
      }
     ],
-    "n": 76
+    "n": 61
    },
    "30d": {
     "altas": [
@@ -6374,7 +6374,7 @@
       "var": -46.24
      }
     ],
-    "n": 76,
+    "n": 61,
     "desde": "2026-10-23"
    },
    "6m": {
@@ -6400,9 +6400,9 @@
       "var": 32.79
      },
      {
-      "ticker": "RAIL3",
-      "nome": "Rumo S.A.",
-      "var": 17.48
+      "ticker": "CXSE3",
+      "nome": "Caixa Seguri",
+      "var": 16.0
      }
     ],
     "baixas": [
@@ -6417,11 +6417,6 @@
       "var": -54.16
      },
      {
-      "ticker": "HAPV3",
-      "nome": "Hapvida",
-      "var": -53.23
-     },
-     {
       "ticker": "USIM5",
       "nome": "Usiminas",
       "var": -49.6
@@ -6430,9 +6425,14 @@
       "ticker": "CSNA3",
       "nome": "Sid Nacional",
       "var": -48.21
+     },
+     {
+      "ticker": "POMO4",
+      "nome": "Marcopolo",
+      "var": -42.12
      }
     ],
-    "n": 76,
+    "n": 61,
     "desde": "2026-05-25"
    },
    "12m": {
@@ -6448,11 +6448,6 @@
       "var": 49.59
      },
      {
-      "ticker": "UGPA3",
-      "nome": "Ultrapar",
-      "var": 44.82
-     },
-     {
       "ticker": "GOAU4",
       "nome": "Gerdau Met",
       "var": 43.1
@@ -6461,14 +6456,14 @@
       "ticker": "FLRY3",
       "nome": "Fleury",
       "var": 41.75
+     },
+     {
+      "ticker": "GGBR4",
+      "nome": "Gerdau",
+      "var": 37.2
      }
     ],
     "baixas": [
-     {
-      "ticker": "HAPV3",
-      "nome": "Hapvida",
-      "var": -66.7
-     },
      {
       "ticker": "CSNA3",
       "nome": "Sid Nacional",
@@ -6488,9 +6483,14 @@
       "ticker": "AZZA3",
       "nome": "Azzas 2154",
       "var": -52.04
+     },
+     {
+      "ticker": "DIRR3",
+      "nome": "Direcional",
+      "var": -51.01
      }
     ],
-    "n": 76,
+    "n": 61,
     "desde": "2025-11-21"
    }
   }

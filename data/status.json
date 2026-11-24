@@ -1,40 +1,40 @@
 {
  "mercado": {
   "ok": true,
-  "em": "2026-11-23T23:08:15-03:00"
+  "em": "2026-11-24T02:30:07-03:00"
  },
  "juros": {
   "ok": true,
-  "em": "2026-11-23T23:08:15-03:00"
+  "em": "2026-11-24T02:30:07-03:00"
  },
  "inflacao": {
   "ok": true,
-  "em": "2026-11-23T23:08:15-03:00"
+  "em": "2026-11-24T02:30:07-03:00"
  },
  "ceagesp": {
   "ok": true,
-  "em": "2026-11-23T23:08:15-03:00"
+  "em": "2026-11-24T02:30:07-03:00"
  },
  "cepea": {
   "ok": true,
-  "em": "2026-11-23T23:08:15-03:00"
+  "em": "2026-11-24T02:30:07-03:00"
  },
  "combustiveis": {
   "ok": false,
-  "em": "2026-11-23T23:08:15-03:00",
+  "em": "2026-11-24T02:30:07-03:00",
   "erro": "ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
-  "ultimo_ok": "2026-11-23T19:38:21-03:00"
+  "ultimo_ok": "2026-11-23T23:08:15-03:00"
  },
  "energia": {
   "ok": false,
-  "em": "2026-11-23T23:08:15-03:00",
-  "erro": "ConnectTimeout: HTTPSConnectionPool(host='dadosabertos.aneel.gov.br', port=443): Max retries exceeded with url: /api/3/action/package_show?id=tarifas-distribuidoras-energia-eletrica (Caused by ConnectTimeoutError(<HTTPSConnection(host='dadosabertos.aneel.gov.br', port=443) at 0x7f56ee9d37d0>, 'Connection to dadosabertos.aneel.gov.br timed out. (connect timeout=20)'))",
-  "ultimo_ok": "2026-11-23T19:38:21-03:00"
+  "em": "2026-11-24T02:30:07-03:00",
+  "erro": "ConnectTimeout: HTTPSConnectionPool(host='dadosabertos.aneel.gov.br', port=443): Max retries exceeded with url: /api/3/action/package_show?id=tarifas-distribuidoras-energia-eletrica (Caused by ConnectTimeoutError(<HTTPSConnection(host='dadosabertos.aneel.gov.br', port=443) at 0x7334add6bbc0>, 'Connection to dadosabertos.aneel.gov.br timed out. (connect timeout=20)'))",
+  "ultimo_ok": "2026-11-23T23:08:15-03:00"
  },
  "ibge": {
   "ok": false,
-  "em": "2026-11-23T23:08:15-03:00",
+  "em": "2026-11-24T02:30:07-03:00",
   "erro": "IndexError: list index out of range",
-  "ultimo_ok": "2026-11-23T19:38:21-03:00"
+  "ultimo_ok": "2026-11-23T23:08:15-03:00"
  }
 }
