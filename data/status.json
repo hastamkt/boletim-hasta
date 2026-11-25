@@ -1,40 +1,38 @@
 {
  "mercado": {
   "ok": true,
-  "em": "2026-11-24T20:50:47-03:00"
+  "em": "2026-11-25T01:34:49-03:00"
  },
  "juros": {
   "ok": true,
-  "em": "2026-11-24T20:50:47-03:00"
+  "em": "2026-11-25T01:34:49-03:00"
  },
  "inflacao": {
   "ok": true,
-  "em": "2026-11-24T20:50:47-03:00"
+  "em": "2026-11-25T01:34:49-03:00"
  },
  "ceagesp": {
   "ok": true,
-  "em": "2026-11-24T20:50:47-03:00"
+  "em": "2026-11-25T01:34:49-03:00"
  },
  "cepea": {
   "ok": true,
-  "em": "2026-11-24T20:50:47-03:00"
+  "em": "2026-11-25T01:34:49-03:00"
  },
  "combustiveis": {
-  "ok": false,
-  "em": "2026-11-24T20:50:47-03:00",
-  "erro": "ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
-  "ultimo_ok": "2026-11-24T18:10:28-03:00"
+  "ok": true,
+  "em": "2026-11-25T01:34:49-03:00"
  },
  "energia": {
   "ok": false,
-  "em": "2026-11-24T20:50:47-03:00",
-  "erro": "ConnectTimeout: HTTPSConnectionPool(host='dadosabertos.aneel.gov.br', port=443): Max retries exceeded with url: /api/3/action/package_show?id=tarifas-distribuidoras-energia-eletrica (Caused by ConnectTimeoutError(<HTTPSConnection(host='dadosabertos.aneel.gov.br', port=443) at 0x70a48656b920>, 'Connection to dadosabertos.aneel.gov.br timed out. (connect timeout=20)'))",
-  "ultimo_ok": "2026-11-24T18:10:28-03:00"
+  "em": "2026-11-25T01:34:49-03:00",
+  "erro": "ConnectTimeout: HTTPSConnectionPool(host='dadosabertos.aneel.gov.br', port=443): Max retries exceeded with url: /api/3/action/package_show?id=tarifas-distribuidoras-energia-eletrica (Caused by ConnectTimeoutError(<HTTPSConnection(host='dadosabertos.aneel.gov.br', port=443) at 0x7c41d0997740>, 'Connection to dadosabertos.aneel.gov.br timed out. (connect timeout=20)'))",
+  "ultimo_ok": "2026-11-24T20:50:47-03:00"
  },
  "ibge": {
   "ok": false,
-  "em": "2026-11-24T20:50:47-03:00",
+  "em": "2026-11-25T01:34:49-03:00",
   "erro": "IndexError: list index out of range",
-  "ultimo_ok": "2026-11-24T18:10:28-03:00"
+  "ultimo_ok": "2026-11-24T20:50:47-03:00"
  }
 }
